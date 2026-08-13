@@ -1,7 +1,7 @@
 // ============================================================
 // ZXH OFFICIAL TOOLS
 // FIREBASE CONFIGURATION
-// VERSION: 2.0 (UPDATED)
+// VERSION: 3.0 (FIXED ROOT PATH)
 // ============================================================
 
 const firebaseConfig = {
@@ -28,7 +28,12 @@ try {
 
 // Database references
 const db = firebase.database();
-const rootRef = db.ref("zxhofficial");
+
+// ❌ PURANA (Ghalat):
+// const rootRef = db.ref("zxhofficial");
+
+// ✅ NAYA (Sahi - root par data hai):
+const rootRef = db.ref();
 
 // Make globally available
 window.db = db;
@@ -37,5 +42,5 @@ window.firebaseApp = firebase.app();
 
 console.log("🔥 Firebase Version:", firebase.SDK_VERSION || "10.x");
 console.log("📡 Database URL:", firebaseConfig.databaseURL);
-console.log("📁 Root Reference:", "zxhofficial");
+console.log("📁 Root Reference: ROOT (/)");
 console.log("✅ Firebase Config loaded successfully");
