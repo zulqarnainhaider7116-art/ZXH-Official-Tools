@@ -1,0 +1,509 @@
+  /* ============================================================
+           COMPLETE LIQUID GLASS – iOS 26 INSPIRED
+           ============================================================ */
+        :root {
+            --page-bg: #f0f4f8;
+            --glass-bg: rgba(255,255,255,0.28);
+            --glass-bg-strong: rgba(255,255,255,0.60);
+            --glass-border: rgba(255,255,255,0.7);
+            --glass-shadow: 0 8px 32px rgba(40,60,100,0.06);
+            --glass-highlight: rgba(255,255,255,0.85);
+            --accent-blue: #007AFF;
+            --accent-purple: #AF52DE;
+            --gradient: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            --radius-sm: 20px;
+            --radius-md: 28px;
+            --radius-lg: 42px;
+            --blur-sm: 16px;
+            --blur-md: 28px;
+            --blur-lg: 40px;
+            --text: #1d1d1f;
+            --text-secondary: #6e6e73;
+            --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Inter', 'Poppins', sans-serif;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:var(--font); }
+        html {
+            scroll-behavior: smooth;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            background: var(--page-bg);
+            color: var(--text);
+            min-height: 100dvh;
+            padding: 10px;
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* === متحرک (Dynamic) پس منظر – شیشے کے نیچے زندگی === */
+        body::before {
+            content:'';
+            position:fixed;
+            top:-30%; left:-20%;
+            width:140%; height:160%;
+            background:
+                radial-gradient(ellipse at 30% 20%, rgba(140,200,255,0.15), transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(210,170,255,0.12), transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.08), transparent 70%);
+            animation: bgMove 24s infinite alternate ease-in-out;
+            pointer-events:none;
+            z-index:0;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        @keyframes bgMove {
+            0% { transform: scale(1) rotate(-2deg) translateX(-2%); }
+            100% { transform: scale(1.08) rotate(4deg) translateX(2%); }
+        }
+
+        .container {
+            max-width:1400px;
+            margin:0 auto;
+            position:relative;
+            z-index:1;
+        }
+
+        /* ============================================================
+           بنیادی شیشہ (Core Glass) – مائع کی چمک اور گہرائی
+           ============================================================ */
+        .glass-surface {
+            background: rgba(255,255,255,0.28);
+            backdrop-filter: blur(var(--blur-md)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur-md)) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.65);
+            border-radius: var(--radius-lg);
+            box-shadow:
+                0 8px 32px rgba(0,0,0,0.04),
+                inset 0 1px 0 rgba(255,255,255,0.9),
+                inset 0 -1px 0 rgba(255,255,255,0.2);
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        /* چمکتی ہوئی روشنی کی لہر (Shimmer) */
+        .glass-surface::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -60%;
+            width: 220%;
+            height: 220%;
+            background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.35) 0%, transparent 65%);
+            pointer-events: none;
+            opacity: 0;
+            animation: shimmer 7s infinite alternate ease-in-out;
+        }
+        @keyframes shimmer {
+            0% { transform: translate(-15%, -15%) scale(0.9); opacity: 0.2; }
+            100% { transform: translate(15%, 15%) scale(1.3); opacity: 0.6; }
+        }
+
+        /* مضبوط شیشہ (Strong Glass) */
+        .glass-surface-strong {
+            background: rgba(255,255,255,0.60);
+            backdrop-filter: blur(var(--blur-lg)) saturate(200%);
+            -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(200%);
+            border: 1px solid rgba(255,255,255,0.8);
+            border-radius: var(--radius-lg);
+            box-shadow:
+                0 12px 40px rgba(0,0,0,0.05),
+                inset 0 1px 0 rgba(255,255,255,0.95),
+                inset 0 -1px 0 rgba(255,255,255,0.3);
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-surface-strong::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 70% 20%, rgba(255,255,255,0.25) 0%, transparent 60%);
+            pointer-events: none;
+            animation: shimmer 6s infinite alternate-reverse ease-in-out;
+        }
+
+        /* کارڈز (Cards) */
+        .glass-card {
+            background: rgba(255,255,255,0.32);
+            backdrop-filter: blur(var(--blur-sm)) saturate(170%);
+            -webkit-backdrop-filter: blur(var(--blur-sm)) saturate(170%);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: var(--radius-md);
+            box-shadow:
+                0 4px 20px rgba(0,0,0,0.03),
+                inset 0 1px 0 rgba(255,255,255,0.8);
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+
+        /* گول بٹن / پِلز (Pills) */
+        .glass-pill {
+            background: rgba(255,255,255,0.35);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.6);
+            border-radius: 40px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        /* ============================================================
+           کروم (Chrome) کے لیے اضافی ریفریکشن – شیشے کے پیچھے بگاڑ
+           ============================================================ */
+        @supports (backdrop-filter: blur(1px) url(#liquid-refract)) {
+            .glass-surface,
+            .glass-surface-strong,
+            .glass-card,
+            .glass-pill {
+                backdrop-filter: blur(var(--blur-md)) saturate(180%) url(#liquid-refract);
+                -webkit-backdrop-filter: blur(var(--blur-md)) saturate(180%) url(#liquid-refract);
+            }
+            .glass-card {
+                backdrop-filter: blur(var(--blur-sm)) saturate(170%) url(#liquid-refract);
+                -webkit-backdrop-filter: blur(var(--blur-sm)) saturate(170%) url(#liquid-refract);
+            }
+        }
+
+        /* حرکت کم کرنے والوں کے لیے (Reduced Motion) */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* ============================================================
+           حسب ضرورت حصے (اپنے موجودہ حصوں کے ساتھ ضم)
+           ============================================================ */
+        .header-inner {
+            display:flex; justify-content:space-between; align-items:center;
+            padding: 8px 12px;
+        }
+        .logo-area { display:flex; align-items:center; gap:12px; }
+        .logo {
+            width:42px; height:42px;
+            border-radius:16px;
+            overflow:hidden;
+            background: rgba(255,255,255,0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.5) inset;
+        }
+        .logo img { width:100%; height:100%; object-fit:cover; }
+        .title h1 {
+            font-size:1.25rem; font-weight:700; line-height:1.2;
+            background: var(--gradient); -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+        }
+        .title p { font-size:0.75rem; color:var(--text-secondary); font-weight:500; }
+
+        .menu-btn {
+            width:40px; height:40px;
+            border-radius:50%;
+            display:flex; align-items:center; justify-content:center;
+            border:1px solid rgba(255,255,255,0.7);
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            color: var(--text);
+            cursor: pointer;
+            transition: 0.2s;
+            transform: translateZ(0);
+        }
+        .menu-btn:active { transform: scale(0.92); }
+
+        /* === سائیڈبار === */
+        .sidebar {
+            position:fixed; top:0; left:-320px; width:280px; height:100%;
+            background: rgba(255,255,255,0.80);
+            backdrop-filter: blur(var(--blur-lg)) saturate(180%);
+            -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(180%);
+            z-index:1000; padding:25px 15px;
+            transition:left 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            border-right: 1px solid rgba(255,255,255,0.6);
+            overflow-y:auto;
+        }
+        .sidebar.open { left:0; }
+        .sidebar h3 { color:var(--text); margin:20px 0 12px; font-size:0.95rem; font-weight:600; opacity:0.8; }
+        .sidebar .item {
+            display:block; padding:11px 15px; margin:6px 0; border-radius:30px;
+            background: rgba(255,255,255,0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.5);
+            text-decoration:none; color:var(--text); font-weight:500; font-size:0.9rem;
+            transition: all 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .sidebar .item:active { background: rgba(0,122,255,0.12); border-color: var(--accent-blue); }
+        .sidebar .close-btn { position:absolute; top:15px; right:15px; font-size:1.5rem; cursor:pointer; color:var(--text); opacity:0.6; }
+        .overlay {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.12); backdrop-filter:blur(8px);
+            z-index:999; display:none;
+        }
+        .overlay.show { display:block; }
+
+        /* === نوٹیفیکیشن === */
+        .notif-bar {
+            background: rgba(255,255,255,0.35);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-radius:24px; padding:8px 16px;
+            margin-bottom:12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+            text-align:center;
+            font-weight:500; font-size:0.8rem; color:var(--accent-purple);
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        /* === سرچ === */
+        #searchInput {
+            width:100%; padding:12px 16px; margin:0;
+            background: rgba(255,255,255,0.40);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border:1px solid rgba(255,255,255,0.6);
+            border-radius:40px;
+            font-size:0.9rem; color:var(--text); outline:none;
+            transition: 0.2s;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+        }
+        #searchInput:focus {
+            background: rgba(255,255,255,0.75);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(0,122,255,0.08);
+        }
+
+        /* === کیٹیگری بٹن === */
+        .category-row {
+            display:flex; gap:8px; overflow-x:auto; padding:4px 0 12px;
+            scrollbar-width:thin; -webkit-overflow-scrolling:touch; margin-bottom:5px;
+        }
+        .category-row::-webkit-scrollbar { height:5px; }
+        .category-row::-webkit-scrollbar-thumb { background:var(--accent-blue); border-radius:10px; }
+        .cat-btn {
+            flex-shrink:0;
+            background: rgba(255,255,255,0.30);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            color:var(--text);
+            border:1px solid rgba(255,255,255,0.55);
+            padding:9px 22px; border-radius:40px;
+            font-weight:600;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+            transition: all 0.25s;
+            font-size:0.8rem; white-space:nowrap; cursor:pointer;
+            text-decoration:none; display:inline-block;
+        }
+        .cat-btn.active, .cat-btn:active {
+            background: rgba(255,255,255,0.70);
+            border-color: var(--accent-blue);
+            box-shadow: 0 4px 14px rgba(0,122,255,0.15);
+            color: var(--accent-blue);
+        }
+
+        /* === ٹول کارڈز – مکمل طور پر مائع === */
+        .grid {
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:14px;
+            padding:4px;
+        }
+        @media(min-width:600px) { .grid { grid-template-columns:repeat(3,1fr); } }
+        @media(min-width:1024px) { .grid { grid-template-columns:repeat(4,1fr); } }
+
+        .tool-card {
+            background: rgba(255,255,255,0.20);
+            backdrop-filter: blur(22px) saturate(200%);
+            -webkit-backdrop-filter: blur(22px) saturate(200%);
+            border-radius:var(--radius-md);
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow:
+                0 4px 20px rgba(0,0,0,0.03),
+                inset 0 1px 0 rgba(255,255,255,0.7);
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.25, 0.1, 0.25, 1), box-shadow 0.3s;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
+        .tool-card:active {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow:
+                0 16px 40px rgba(0,0,0,0.06),
+                inset 0 0 0 1px rgba(255,255,255,0.8);
+        }
+        .tool-card-inner {
+            text-align:center;
+            padding: 28px 8px 24px 8px;
+            min-height: 185px;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content: flex-start;
+            position: relative;
+        }
+        .tool-icon {
+            width: 80px;
+            height: 80px;
+            margin: -4px auto 12px auto;
+            border-radius:22px;
+            overflow:hidden;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.5) inset;
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+        .tool-icon img { width:100%; height:100%; object-fit:cover; }
+        .tool-name { font-weight:600; font-size:0.9rem; margin-top: 6px; color:var(--text); }
+
+        /* اسکین لائن (اضافی چمک) */
+        .scan-line {
+            position: absolute;
+            top:-30%;
+            left:0;
+            width:100%;
+            height:2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.7), transparent);
+            opacity:0;
+            transition: top 0.4s ease, opacity 0.2s;
+            pointer-events: none;
+            filter: blur(1px);
+        }
+        .scan-line.active { top:110%; opacity:1; }
+
+        /* === اعداد و شمار اور لائک === */
+        .stats-row {
+            display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:nowrap;
+        }
+        .stat-box {
+            background: rgba(255,255,255,0.40);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding:9px 18px; border-radius:30px;
+            font-weight:600; font-size:0.8rem; white-space:nowrap;
+            border: 1px solid rgba(255,255,255,0.6);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
+        }
+        .like-btn {
+            background: var(--gradient);
+            color:white;
+            padding:10px 22px; border-radius:40px;
+            font-weight:700; text-decoration:none;
+            box-shadow: 0 4px 12px rgba(0,122,255,0.2);
+            transition: all 0.2s;
+            display:inline-block; font-size:0.8rem; white-space:nowrap;
+            border: none; cursor:pointer;
+        }
+        .like-btn:active { transform: scale(0.94); }
+
+        /* === کمنٹ باکس === */
+        .comment-box { padding:12px; }
+        input, textarea {
+            width:100%; padding:12px; margin:6px 0;
+            background: rgba(255,255,255,0.45);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border:1px solid rgba(255,255,255,0.6);
+            border-radius:24px;
+            font-size:0.9rem; color:var(--text); outline:none;
+            transition: all 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+        input:focus, textarea:focus {
+            background: rgba(255,255,255,0.80);
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 4px rgba(0,122,255,0.06);
+        }
+
+        /* === پوپ اپ === */
+        .popup-overlay {
+            position:fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.12);
+            backdrop-filter:blur(18px);
+            -webkit-backdrop-filter:blur(18px);
+            display:none; justify-content:center; align-items:center; z-index:2000; padding:20px;
+        }
+        .glass-popup {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(var(--blur-lg)) saturate(200%);
+            -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(200%);
+            border-radius:42px; padding:32px 28px; max-width:400px; width:100%;
+            text-align:center; color:var(--text);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+        .glass-popup h2 { font-size:1.5rem; margin-bottom:12px; font-weight:700; }
+        .glass-popup p { color:var(--text-secondary); margin-bottom:22px; line-height:1.6; font-size:0.95rem; }
+        .glass-popup-buttons { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+        .glass-btn {
+            padding:12px 28px; border:none; border-radius:40px; font-weight:600;
+            cursor:pointer; transition: all 0.2s; font-size:0.9rem;
+            background: rgba(255,255,255,0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.7);
+            color: var(--text);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .glass-btn-primary {
+            background: var(--gradient);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 14px rgba(0,122,255,0.2);
+        }
+        .glass-btn:active { transform:scale(0.94); }
+        .stars { display:flex; justify-content:center; gap:12px; margin:20px 0; }
+        .star { font-size:38px; color:#ddd; cursor:pointer; transition:0.2s; }
+        .star.selected { color:#ff9f0a; text-shadow:0 0 8px rgba(255,159,10,0.3); }
+
+        /* === فوٹر === */
+        .footer-text { text-align:center; opacity:0.7; margin-top:6px; font-size:0.75rem; color:var(--text-secondary); }
+
+        /* === انسٹال ٹوسٹ === */
+        #installToast {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.80);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            padding: 14px 28px;
+            border-radius: 40px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+            z-index: 2500;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 0.9rem;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,0.8);
+            color: var(--text);
+        }
+        #installToast button {
+            border: none;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.85rem;
+        }
+        #installAppBtn { background: var(--gradient); color: white; }
+        #dismissToast { background: transparent; color: var(--text-secondary); font-size: 1.4rem; padding: 0 8px; }
+
+        /* === موبائل ایڈجسٹمنٹ === */
+        @media (max-width: 600px) {
+            .tool-card-inner { padding: 20px 6px 18px 6px; min-height:160px; }
+            .tool-icon { width:64px; height:64px; }
+          }
