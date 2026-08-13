@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://zxh-official-tools.vercel.app/sitemap.xml
