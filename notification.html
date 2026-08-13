@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05070d">
+
+    <title>Notification • ZXH OFFICIAL TOOLS</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+
+            font-family:
+                Inter,
+                system-ui,
+                -apple-system,
+                sans-serif;
+
+            color: #fff;
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0,229,255,.14),
+                    transparent 34%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(124,58,237,.17),
+                    transparent 34%
+                ),
+                #05070d;
+        }
+
+        .orb {
+            position: fixed;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            filter: blur(90px);
+            opacity: .3;
+        }
+
+        .orb.one {
+            top: -120px;
+            left: -100px;
+            background: #00e5ff;
+        }
+
+        .orb.two {
+            right: -100px;
+            bottom: -120px;
+            background: #7c3aed;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 470px;
+            padding: 38px 27px;
+
+            text-align: center;
+
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,.1);
+
+            background: rgba(255,255,255,.055);
+
+            backdrop-filter: blur(28px);
+            -webkit-backdrop-filter: blur(28px);
+
+            box-shadow:
+                0 30px 90px rgba(0,0,0,.5),
+                inset 0 1px 0 rgba(255,255,255,.08);
+        }
+
+        .icon {
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 22px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 26px;
+
+            font-size: 40px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,.15),
+                    rgba(124,58,237,.18)
+                );
+
+            border: 1px solid rgba(0,229,255,.2);
+
+            box-shadow:
+                0 0 40px rgba(0,229,255,.12);
+        }
+
+        .tag {
+            display: inline-block;
+            margin-bottom: 14px;
+
+            padding: 7px 13px;
+
+            border-radius: 999px;
+
+            color: #67e8f9;
+            background: rgba(0,229,255,.08);
+            border: 1px solid rgba(0,229,255,.14);
+
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 27px;
+            font-weight: 900;
+            margin-bottom: 11px;
+        }
+
+        p {
+            color: #9ca3af;
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        .message {
+            margin-top: 24px;
+            padding: 18px;
+
+            text-align: left;
+
+            border-radius: 17px;
+            border: 1px solid rgba(255,255,255,.07);
+
+            background: rgba(255,255,255,.035);
+
+            color: #d1d5db;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .brand {
+            margin-top: 25px;
+
+            color: #4b5563;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2.5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+
+    <main class="card">
+
+        <div class="icon">
+            🔔
+        </div>
+
+        <div class="tag">
+            ZXH Notification
+        </div>
+
+        <h1 id="notificationTitle">
+            Important Update
+        </h1>
+
+        <p>
+            You have a new notification from
+            ZXH OFFICIAL TOOLS.
+        </p>
+
+        <div
+            class="message"
+            id="notificationMessage"
+        >
+            Welcome to ZXH OFFICIAL TOOLS.
+        </div>
+
+        <div class="brand">
+            ZXH OFFICIAL TOOLS
+        </div>
+
+    </main>
+
+    <script>
+        /*
+         * Optional Firebase-driven notification content.
+         * app.js can redirect here with:
+         *
+         * notification.html?title=...&message=...
+         */
+
+        const params = new URLSearchParams(
+            window.location.search
+        );
+
+        const title = params.get("title");
+        const message = params.get("message");
+
+        if (title) {
+            document.getElementById(
+                "notificationTitle"
+            ).textContent = title;
+        }
+
+        if (message) {
+            document.getElementById(
+                "notificationMessage"
+            ).textContent = message;
+        }
+    </script>
+
+</body>
+</html>
