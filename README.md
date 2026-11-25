@@ -1,165 +1,316 @@
 <div align="center">
 
-<img src="public/assets/icon-512.png" alt="ZXH OFFICIAL TOOLKIT" width="120" />
+<img src="public/assets/icon-512.png" width="150" alt="ZXH OFFICIAL Logo" />
 
-# ZXH OFFICIAL TOOLKIT
+# 𓆩⚡ 𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 𝐓𝐎𝐎𝐋𝐊𝐈𝐓 ⚡𓆪
 
-### 100+ Free Online Tools • Next.js • React • TypeScript
+### 𖤍 𝗧𝗛𝗘 𝗨𝗟𝗧𝗜𝗠𝗔𝗧𝗘 𝗙𝗥𝗘𝗘 𝗢𝗡𝗟𝗜𝗡𝗘 𝗧𝗢𝗢𝗟𝗦 𝗘𝗖𝗢𝗦𝗬𝗦𝗧𝗘𝗠
 
-**A complete, mobile-first tools hub by ZXH OFFICIAL**
+**100+ Tools · Next.js 15 · React 19 · TypeScript · Firebase · PWA**
 
-[![TypeScript & Production Build](https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools/actions/workflows/verify.yml)
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
-[![React](https://img.shields.io/badge/React-19-149eca?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript)](https://www.typescriptlang.org/)
-[![Firebase](https://img.shields.io/badge/Firebase-Realtime_Database-ffca28?logo=firebase)](https://firebase.google.com/)
-[![License](https://img.shields.io/badge/License-Proprietary-important)](#license)
+<p>
+  <a href="https://zxh-official-tools.pages.dev/"><img src="https://img.shields.io/badge/🌐_OPEN_LIVE_WEBSITE-ZXH_OFFICIAL-ff4f9a?style=for-the-badge" alt="Live Website" /></a>
+  <a href="https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools"><img src="https://img.shields.io/badge/💻_SOURCE_CODE-GITHUB-171717?style=for-the-badge&logo=github" alt="GitHub" /></a>
+  <a href="https://mr-zxh-official.vercel.app/"><img src="https://img.shields.io/badge/👑_DEVELOPER_PORTFOLIO-VISIT-5b6cff?style=for-the-badge" alt="Portfolio" /></a>
+</p>
 
-[🌐 Live Website](https://zxh-official-tools.pages.dev/) · [📦 Repository](https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools) · [👨‍💻 Developer](https://mr-zxh-official.vercel.app/)
+[![CI](https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools/actions/workflows/verify.yml)
+[![Next.js](https://img.shields.io/badge/NEXT.JS-15-000000?style=flat-square&logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/REACT-19-149eca?style=flat-square&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TYPESCRIPT-5.9-3178c6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
+[![Firebase](https://img.shields.io/badge/FIREBASE-REALTIME_DATABASE-ffca28?style=flat-square&logo=firebase)](https://firebase.google.com/)
+[![PWA](https://img.shields.io/badge/WEB_APP-PWA-7c4dff?style=flat-square)](https://web.dev/progressive-web-apps/)
+[![Status](https://img.shields.io/badge/STATUS-ACTIVE-20b486?style=flat-square)](https://zxh-official-tools.pages.dev/)
+
+<br />
+
+**𓆩━━━━━━━ 𝐏𝐎𝐖𝐄𝐑𝐄𝐃 𝐁𝐘 𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 ━━━━━━━𓆪**
+
+*One platform. 100+ tools. Zero unnecessary complexity.*
 
 </div>
 
 ---
 
-## ✨ About
+## 𖤍 01 — 𝗪𝗘𝗟𝗖𝗢𝗠𝗘 𝗧𝗢 𝗧𝗛𝗘 𝗭𝗫𝗛 𝗘𝗖𝗢𝗦𝗬𝗦𝗧𝗘𝗠
 
-**ZXH OFFICIAL TOOLKIT** is an all-in-one, responsive online tools platform created and maintained by **ZULQARNAIN X HAIDER**. The latest codebase uses the Next.js App Router, React and TypeScript, with Firebase Realtime Database for live tool data and community activity.
+**ZXH OFFICIAL TOOLKIT** is a modern, mobile-first online tools platform built to bring useful web utilities together in one place. The project is developed under the **ZXH OFFICIAL** brand by **ZULQARNAIN X HAIDER**.
 
-The interface is designed for mobile and desktop users, with a colorful light-first visual system, responsive layouts and installable PWA support.
+The current codebase is powered by **Next.js App Router, React 19 and TypeScript**, with Firebase Realtime Database integration for dynamic platform data and community activity. Its responsive, light-first interface is designed to work across phones, tablets and desktop screens, with Progressive Web App support.
 
-## 🚀 Technology
+> ⚡ **Our direction:** fast access, clean experience, practical tools, responsive design and a continuously evolving ZXH ecosystem.
 
-| Layer | Technology |
-| --- | --- |
-| Framework | Next.js 15 (App Router) |
-| UI | React 19 |
-| Language | TypeScript 5.9 |
-| Styling | CSS (global design system) |
-| Realtime data | Firebase Realtime Database |
-| Web app | PWA manifest and install support |
-| Quality checks | TypeScript compiler + Next.js production build |
-| Automation | GitHub Actions |
+## ✦ 02 — 𝗤𝗨𝗜𝗖𝗞 𝗟𝗜𝗡𝗞𝗦
 
-## 🧰 Platform capabilities
+| Destination | Open |
+|:--|:--|
+| 🌐 Live Tools Website | [zxh-official-tools.pages.dev](https://zxh-official-tools.pages.dev/) |
+| 💻 GitHub Repository | [ZXH-Official-Tools](https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools) |
+| 👑 Developer Portfolio | [mr-zxh-official.vercel.app](https://mr-zxh-official.vercel.app/) |
+| 🧑‍💻 Personal Portfolio | [mr-zulqarnain-portfolio.vercel.app](https://mr-zulqarnain-portfolio.vercel.app/) |
+| 📡 Telegram Channel | [t.me/zxh_official786](https://t.me/zxh_official786) |
+| 💬 WhatsApp Community | [Join ZXH Community](https://chat.whatsapp.com/EKmQy6wjXZS4XfrD89qgva) |
+| 📢 WhatsApp Channel — Updates | [Open Channel](https://whatsapp.com/channel/0029Vb6lszR7YSd3iYfa2V0n) |
+| 📢 WhatsApp Channel — Backup | [Open Backup Channel](https://whatsapp.com/channel/0029Vb8XF2y1NCrQDWetrk1r) |
 
-- **Live tools catalogue** — tool records are read from Firebase Realtime Database.
-- **Discovery** — search, category filtering and sorting.
-- **Personalization** — favourites and saved theme preference in browser storage.
-- **Community feedback** — tool ratings and reviews.
-- **Activity insights** — site and tool view counters, daily statistics and recent activity tracking.
-- **Notifications** — live notification feed from the database.
-- **PWA support** — web app manifest, launcher icon and browser install flow.
-- **Responsive interface** — optimized for mobile screens as well as desktop.
-- **SEO and sharing metadata** — page metadata, canonical URL, Open Graph, Twitter cards and structured data.
+## 🚀 03 — 𝗣𝗟𝗔𝗧𝗙𝗢𝗥𝗠 𝗛𝗜𝗚𝗛𝗟𝗜𝗚𝗛𝗧𝗦
 
-> Tool availability and live catalogue content depend on the configured Firebase Realtime Database.
+<table>
+<tr>
+<td width="50%">
 
-## 🖥️ Getting started
+### 🧰 100+ Online Tools
+A growing collection of browser-based utilities in one searchable platform.
+
+</td>
+<td width="50%">
+
+### ⚡ Live Catalogue
+Tool records and platform data are loaded through Firebase Realtime Database.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🔎 Smart Discovery
+Search, category filtering and sorting help users find tools quickly.
+
+</td>
+<td width="50%">
+
+### ❤️ Personalization
+Favourites and saved theme preferences are maintained in browser storage.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### ⭐ Community Feedback
+Tool ratings, reviews and activity insights support community interaction.
+
+</td>
+<td width="50%">
+
+### 📲 PWA Experience
+Manifest, launcher icon and install support make the platform app-like.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🔔 Notifications
+A live notification feed is connected to database-backed platform data.
+
+</td>
+<td width="50%">
+
+### 📱 Responsive UI
+A mobile-first layout adapts to phone, tablet and desktop screens.
+
+</td>
+</tr>
+</table>
+
+<sub>Note: the live catalogue and database-powered features depend on the configured Firebase Realtime Database and its security rules.</sub>
+
+## 🧬 04 — 𝗧𝗘𝗖𝗛𝗡𝗢𝗟𝗢𝗚𝗬 𝗦𝗧𝗔𝗖𝗞
+
+| Technology | Role |
+|:--|:--|
+| **Next.js 15** | App Router, application framework and production build |
+| **React 19** | Component-based user interface |
+| **TypeScript 5.9** | Typed application logic and shared data models |
+| **CSS** | Global styles and responsive design system |
+| **Firebase Realtime Database** | Live catalogue, settings, notifications, ratings and usage data |
+| **PWA** | Web app manifest and installable experience |
+| **GitHub Actions** | Automated type-check and production-build workflow |
+
+## 🛠️ 05 — 𝗥𝗨𝗡 𝗟𝗢𝗖𝗔𝗟𝗟𝗬
 
 ### Requirements
 
-- Node.js 20 or newer
-- npm
-- Git
+- **Node.js:** 20 or newer
+- **npm**
+- **Git**
 
-### Install dependencies
+### ① Clone the repository
 
 ```bash
 git clone https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools.git
+```
+
+### ② Open the project folder
+
+```bash
 cd ZXH-Official-Tools
+```
+
+### ③ Install packages
+
+```bash
 npm install
 ```
 
-### Run locally
+### ④ Start development server
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000).
+Now open **http://localhost:3000** in your browser.
 
-### Available scripts
+## ⌨️ 06 — 𝗡𝗣𝗠 𝗖𝗢𝗠𝗠𝗔𝗡𝗗𝗦
 
-| Command | Purpose |
-| --- | --- |
-| `npm run dev` | Start the local development server |
-| `npm run typecheck` | Run TypeScript checks |
-| `npm run build` | Create the optimized production build |
+| Command | Description |
+|:--|:--|
+| `npm run dev` | Start the Next.js development server |
+| `npm run typecheck` | Run TypeScript validation |
+| `npm run build` | Generate the optimized production build |
 | `npm run start` | Start the production server |
 
-## 🗂️ Project structure
+## 🗂️ 07 — 𝗣𝗥𝗢𝗝𝗘𝗖𝗧 𝗦𝗧𝗥𝗨𝗖𝗧𝗨𝗥𝗘
 
 ```text
-.
+ZXH-Official-Tools/
+│
 ├── .github/
 │   └── workflows/
-│       └── verify.yml       # TypeScript and production-build checks
+│       └── verify.yml       # CI: typecheck + production build
+│
 ├── app/
-│   ├── globals.css          # Main responsive design system
-│   ├── layout.tsx           # Root layout, SEO and structured metadata
-│   └── page.tsx             # Main tools experience
+│   ├── globals.css          # Global responsive design system
+│   ├── layout.tsx           # Root layout, SEO and metadata
+│   └── page.tsx             # Main tools platform
+│
 ├── lib/
-│   ├── firebase.ts          # Firebase app and database connection
-│   └── types.ts             # Shared TypeScript data types
+│   ├── firebase.ts          # Firebase configuration / database
+│   └── types.ts             # Shared TypeScript types
+│
 ├── public/
 │   ├── assets/
-│   │   ├── icon-512.png     # App / repository icon
+│   │   ├── icon-512.png     # ZXH app icon
 │   │   └── splash.png       # Splash artwork
-│   ├── manifest.json        # PWA metadata
-│   ├── robots.txt
-│   └── sitemap.xml
+│   ├── manifest.json        # PWA manifest
+│   ├── robots.txt           # Search crawler rules
+│   └── sitemap.xml          # Sitemap
+│
 ├── next.config.ts
 ├── package.json
 └── tsconfig.json
 ```
 
-## 🔄 Continuous integration
+## 🔥 08 — 𝗙𝗜𝗥𝗘𝗕𝗔𝗦𝗘 𝗜𝗡𝗧𝗘𝗚𝗥𝗔𝗧𝗜𝗢𝗡
 
-GitHub Actions runs the following checks when code is pushed to `main` or `full-typescript-nextjs`, and for pull requests targeting `main`:
+The platform uses **Firebase Realtime Database** for dynamic application data, including:
+
+- Tools catalogue and tool records
+- Platform settings
+- Notifications
+- Ratings and reviews
+- Usage statistics and activity counters
+
+**Deployment & security checklist:**
+
+- Review Firebase Realtime Database rules before publishing.
+- Allow only the read/write operations required by the application.
+- Never commit service-account credentials, private keys or access tokens.
+- Do not treat client-side Firebase configuration as a substitute for database security rules.
+
+## ⚙️ 09 — 𝗖𝗜 / 𝗤𝗨𝗔𝗟𝗜𝗧𝗬 𝗖𝗛𝗘𝗖𝗞𝗦
+
+The repository includes a GitHub Actions workflow:
+
+**[.github/workflows/verify.yml](.github/workflows/verify.yml)**
+
+The workflow is configured to:
 
 1. Set up Node.js 20.
-2. Install dependencies.
+2. Install project dependencies.
 3. Run `npm run typecheck`.
 4. Run `npm run build`.
 
-Workflow: [TypeScript and production build](.github/workflows/verify.yml).
+[![Workflow](https://img.shields.io/badge/GitHub_Actions-View_Workflow-2088ff?style=for-the-badge&logo=githubactions)](https://github.com/zulqarnainhaider7116-art/ZXH-Official-Tools/actions)
 
-## 🔥 Firebase
+## 🌍 10 — 𝗗𝗘𝗣𝗟𝗢𝗬𝗠𝗘𝗡𝗧
 
-The application currently connects to the ZXH Official Tools Firebase Realtime Database project. The live catalogue, settings, notifications, ratings and usage statistics are database-backed.
+This is a standard Next.js application and can be deployed to a compatible hosting provider such as **Vercel**.
 
-**Deployment note:** configure Firebase Realtime Database security rules for the intended public read/write operations before deploying. Never place Firebase Admin credentials or other server secrets in client-side code.
+1. Import this repository into your hosting provider.
+2. Select the **Next.js** framework preset.
+3. Use the standard install command: `npm install`.
+4. Use the production build command: `npm run build`.
+5. Deploy and verify the live website, Firebase connectivity and PWA manifest.
 
-## 🌍 Deployment
+Before production release, test the actual deployment URL on both mobile and desktop.
 
-This is a standard Next.js application and can be deployed to a Next.js-compatible hosting provider such as Vercel.
+## 🧩 11 — 𝗭𝗫𝗛 𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟 𝗣𝗥𝗢𝗝𝗘𝗖𝗧𝗦
 
-1. Import this GitHub repository.
-2. Select the Next.js framework preset.
-3. Keep the standard install and build commands (`npm install` and `npm run build`).
-4. Deploy and verify the production URL, Firebase connectivity and PWA manifest.
+Explore more projects from the ZXH development ecosystem:
 
-## 🛡️ Project notes
+| Project | Link |
+|:--|:--|
+| 🛠️ ZXH Official Tools | [Open Website](https://zxh-official-tools.pages.dev/) |
+| 🎬 ZXH Official Movies Hub | [GitHub Repository](https://github.com/zulqarnainhaider7116-art/ZXH-OFFICIAL-MOVIES-HUB) |
+| 📥 ZXH All Media Downloader | [Open Website](https://zxh-all-media-downloader.pages.dev/) |
+| 🧩 ZXH Official Mods | [Open Website](https://zxh-official-mods.pages.dev/) |
+| 🔐 ZXH JS Obfuscater | [Open Website](https://zxh-official-js-obfuscater.vercel.app/) |
+| 👑 Developer Portfolio | [Visit Portfolio](https://mr-zxh-official.vercel.app/) |
 
-- Keep the existing Firebase data structure and public website behaviour compatible when making changes.
-- Test both mobile and desktop layouts.
-- Run `npm run typecheck` and `npm run build` before merging changes.
-- Do not commit private service-account keys, access tokens or other secrets.
+## 🤝 12 — 𝗖𝗢𝗠𝗠𝗨𝗡𝗜𝗧𝗬 & 𝗖𝗢𝗡𝗡𝗘𝗖𝗧
 
-## 👑 Credits
+<div align="center">
 
-**Brand:** 𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋  
-**Created & Developed by:** 𝐙𝐔𝐋𝐐𝐀𝐑𝐍𝐀𝐈𝐍 𝐗 𝐇𝐀𝐈𝐃𝐄𝐑  
-**Powered by:** 𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋
+[![Telegram](https://img.shields.io/badge/TELEGRAM-JOIN_CHANNEL-229ED9?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/zxh_official786)
 
-## 📄 License
+[![WhatsApp Community](https://img.shields.io/badge/WHATSAPP-JOIN_COMMUNITY-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://chat.whatsapp.com/EKmQy6wjXZS4XfrD89qgva)
 
-This repository is a ZXH OFFICIAL project. All rights are reserved unless a separate written license states otherwise. Do not redistribute or rebrand the project without permission.
+[![WhatsApp Channel](https://img.shields.io/badge/WHATSAPP-FOLLOW_CHANNEL-128C7E?style=for-the-badge&logo=whatsapp&logoColor=white)](https://whatsapp.com/channel/0029Vb6lszR7YSd3iYfa2V0n)
+
+**Stay connected. Follow updates. Be part of the ZXH community.**
+
+</div>
+
+## 🛡️ 13 — 𝗗𝗘𝗩𝗘𝗟𝗢𝗣𝗠𝗘𝗡𝗧 𝗡𝗢𝗧𝗘𝗦
+
+- Preserve existing application behaviour and Firebase data compatibility when extending the project.
+- Keep the mobile-first responsive experience intact.
+- Validate changes with `npm run typecheck` and `npm run build`.
+- Keep secrets and private credentials outside source control.
+- Review database rules and deployment settings before production releases.
+
+## 👑 14 — 𝗖𝗥𝗘𝗗𝗜𝗧𝗦 & 𝗕𝗥𝗔𝗡𝗗 𝗜𝗗𝗘𝗡𝗧𝗜𝗧𝗬
+
+<div align="center">
+
+# 𓆩⚡ 𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 ⚡𓆪
+
+### 𝐂𝐑𝐄𝐀𝐓𝐄𝐃 & 𝐃𝐄𝐕𝐄𝐋𝐎𝐏𝐄𝐃 𝐁𝐘
+
+# 𝐙𝐔𝐋𝐐𝐀𝐑𝐍𝐀𝐈𝐍 𝐗 𝐇𝐀𝐈𝐃𝐄𝐑
+
+**𖤍 POWERED BY 𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋**
+
+*Building useful digital experiences, one project at a time.*
+
+[🌐 Website](https://zxh-official-tools.pages.dev/) · [👑 Portfolio](https://mr-zxh-official.vercel.app/) · [📡 Telegram](https://t.me/zxh_official786)
+
+</div>
+
+## 📜 15 — 𝗟𝗜𝗖𝗘𝗡𝗦𝗘 & 𝗨𝗦𝗔𝗚𝗘
+
+This repository is an official **ZXH OFFICIAL** project. Unless a separate written license is provided, all rights are reserved. Do not redistribute, resell, rebrand or publish modified copies as your own without permission from the project owner.
 
 ---
 
 <div align="center">
 
-**Built with passion by ZXH OFFICIAL** ⚡
+**꧁༺ 𝐓𝐇𝐀𝐍𝐊𝐒 𝐅𝐎𝐑 𝐕𝐈𝐒𝐈𝐓𝐈𝐍𝐆 𝐙𝐗𝐇 𝐎𝐅𝐅𝐈𝐂𝐈𝐀𝐋 ༻꧂**
+
+**⭐ Star the repository if you support the project.**
+
+<sub>© ZXH OFFICIAL · Created by ZULQARNAIN X HAIDER · All Rights Reserved</sub>
 
 </div>
