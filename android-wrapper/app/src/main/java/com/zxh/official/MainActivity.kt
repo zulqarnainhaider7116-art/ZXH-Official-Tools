@@ -87,10 +87,21 @@ class MainActivity : Activity() {
             }
 
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                // Keep every normal website link inside this WebView; never hand it to Chrome.
-                // Block non-web schemes so external apps are not launched unexpectedly.
                 val scheme = request.url.scheme?.lowercase()
-                return scheme != "http" && scheme != "https"
+                val isWebUrl = scheme == "http" || scheme == "https"
+                val homeHost = Uri.parse(startUrl).host
+
+                // Tool URLs must never replace the live homepage WebView.
+                // This also catches window.open(..., "noopener,noreferrer") cases
+                // where Android does not deliver onCreateWindow().
+                if (view === webView && isWebUrl &&
+                    !request.url.host.equals(homeHost, ignoreCase = true)) {
+                    openToolInSeparateWebView(request.url.toString())
+                    return true
+                }
+
+                // Keep same-site navigation inside the homepage WebView.
+                return !isWebUrl
             }
         }
 
@@ -167,6 +178,40 @@ class MainActivity : Activity() {
         } else {
             webView.loadUrl(startUrl)
         }
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun openToolInSeparateWebView(url: String) {
+        closeToolWebView()
+        val child = WebView(this)
+        child.setBackgroundColor(Color.WHITE)
+        child.settings.apply {
+            javaScriptEnabled = true
+            domStorageEnabled = true
+            databaseEnabled = true
+            loadsImagesAutomatically = true
+            useWideViewPort = true
+            loadWithOverviewMode = false
+            javaScriptCanOpenWindowsAutomatically = true
+            setSupportMultipleWindows(false)
+            allowFileAccess = false
+            allowContentAccess = true
+            mediaPlaybackRequiresUserGesture = true
+        }
+        child.webViewClient = object : WebViewClient() {
+            override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                val scheme = request.url.scheme?.lowercase()
+                return scheme != "http" && scheme != "https"
+            }
+        }
+        child.webChromeClient = webView.webChromeClient
+        toolWebView = child
+        webView.visibility = View.GONE
+        rootLayout.addView(child, FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        ))
+        child.loadUrl(url)
     }
 
     private fun closeToolWebView() {
