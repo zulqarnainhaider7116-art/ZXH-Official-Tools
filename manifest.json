@@ -1,40 +1,62 @@
 {
-  "name": "ZXH OFFICIAL TOOLS",
+  "id": "/",
+  "name": "ZXH Official Tools — Premium Free Tools Hub",
   "short_name": "ZXH Tools",
-  "description": "ZXH OFFICIAL premium web tools hub.",
-  "start_url": "./index.html",
-  "scope": "./",
-  "display": "standalone",
-  "orientation": "portrait-primary",
-  "background_color": "#05070d",
-  "theme_color": "#00e5ff",
-  "lang": "en",
+  "description": "ZXH Official Tools by Zulqarnain X Haider — a mobile-friendly hub for digital tools, apps and source code.",
+  "lang": "en-PK",
   "dir": "ltr",
-
-  "categories": [
-    "productivity",
-    "utilities",
-    "developer",
-    "tools"
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": [
+    "standalone",
+    "minimal-ui",
+    "browser"
   ],
-
- "icons": [
-  {
-    "src": "./assets/icon-192.png",
-    "sizes": "192x192",
-    "type": "image/png",
-    "purpose": "any"
-  },
-  {
-    "src": "./assets/icon-512.png",
-    "sizes": "512x512",
-    "type": "image/png",
-    "purpose": "any"
-  },
-  {
-    "src": "./assets/icon-maskable-512.png",
-    "sizes": "512x512",
-    "type": "image/png",
-    "purpose": "maskable"
-  }
-]
+  "orientation": "any",
+  "background_color": "#f1f5f9",
+  "theme_color": "#0a0f1c",
+  "categories": [
+    "utilities",
+    "productivity",
+    "education"
+  ],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Explore Tools",
+      "short_name": "Tools",
+      "url": "/#library"
+    },
+    {
+      "name": "Android Apps",
+      "short_name": "Apps",
+      "url": "/#appsSection"
+    },
+    {
+      "name": "Source Code",
+      "short_name": "Source",
+      "url": "/#sourceSection"
+    }
+  ]
+}
