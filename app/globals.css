@@ -557,102 +557,94 @@ html[data-theme="dark"] .notification-close{background:#f1f5f9;color:#0f172a}
 }
 
 
-/* DESKTOP-ONLY DRAWER + FULL-SCREEN WELCOME REFINEMENT */
+/* DESKTOP ONLY — spread drawer navigation and enlarge welcome screen */
 @media (min-width: 900px) {
   .drawer {
     width: min(460px, 42vw);
     min-width: 380px;
     height: 100vh;
     height: 100dvh;
-    padding: 88px 38px 34px;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    padding: 78px 34px 28px;
+    display: grid;
+    grid-template-rows: auto auto repeat(4, minmax(64px, 1fr)) auto;
+    align-content: stretch;
+    gap: 12px;
     overflow-y: auto;
   }
 
-  .drawer .kicker {
-    margin-bottom: 16px;
-    font-size: 11px;
-  }
-
-  .drawer h2 {
-    margin: 12px 0 34px;
-    font-size: clamp(38px, 3.2vw, 54px);
-    line-height: 1.08;
-  }
-
-  .drawer-nav-link {
-    min-height: 62px;
-    padding: 17px 18px;
-    margin-bottom: 12px;
+  .drawer .kicker { align-self: end; font-size: 11px; }
+  .drawer h2 { margin: 6px 0 10px; font-size: clamp(38px, 3.2vw, 54px); line-height: 1.08; }
+  .drawer > .drawer-nav-link {
+    min-height: 64px;
+    height: 100%;
+    margin: 0;
+    padding: 16px 18px;
     gap: 14px;
-    font-size: 13px;
     border-radius: 15px;
+    font-size: 13px;
   }
-
-  .drawer-nav-link .dnav-icon {
-    font-size: 21px;
-  }
-
+  .drawer-nav-link .dnav-icon { font-size: 21px; }
   .drawer-links {
-    margin-top: auto;
-    padding-top: 36px;
-    gap: 8px;
+    margin: 10px 0 0;
+    padding-top: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    border-top: 1px solid rgba(255,255,255,.1);
   }
-
-  .drawer-links a {
-    min-height: 54px;
-    padding: 14px 2px;
-    font-size: 11px;
-  }
+  .drawer-links a { min-height: 48px; padding: 12px 2px; font-size: 11px; }
 
   .boot {
     min-height: 100vh;
     min-height: 100dvh;
-    padding: 48px 6vw;
-    gap: clamp(22px, 2.5vh, 34px);
+    padding: 56px 5vw;
+    gap: clamp(22px, 2.8vh, 36px);
   }
+  .boot-logo { font-size: clamp(180px, 23vw, 320px); }
+  .boot-official { font-size: clamp(36px, 3.5vw, 56px); }
+  .boot-divider { width: clamp(150px, 14vw, 220px); height: 4px; margin: 12px 0; }
+  .boot-welcome { max-width: 86vw; font-size: clamp(28px, 2.4vw, 42px); }
+  .boot-subtitle { max-width: 760px; font-size: clamp(17px, 1.35vw, 22px); }
+  .boot-track { width: min(520px, 40vw); height: 8px; }
+  .boot-percent { font-size: clamp(36px, 2.8vw, 48px); min-height: 52px; }
+  .boot-status { font-size: 12px; }
+}
 
-  .boot-logo {
-    font-size: clamp(170px, 22vw, 310px);
-  }
-
-  .boot-official {
-    font-size: clamp(34px, 3.2vw, 52px);
-    letter-spacing: .42em;
-  }
-
-  .boot-divider {
-    width: clamp(130px, 13vw, 210px);
-    height: 4px;
-    margin: 12px 0;
-  }
-
-  .boot-welcome {
-    max-width: min(1100px, 82vw);
-    font-size: clamp(26px, 2.2vw, 40px);
-    line-height: 1.35;
-  }
-
-  .boot-subtitle {
-    max-width: min(760px, 70vw);
-    font-size: clamp(17px, 1.25vw, 21px);
-    line-height: 1.75;
-  }
-
-  .boot-track {
-    width: min(520px, 38vw);
-    height: 8px;
-    margin-top: 10px;
-  }
-
-  .boot-percent {
-    font-size: clamp(34px, 2.6vw, 46px);
-    min-height: 48px;
-  }
-
-  .boot-status {
-    font-size: 12px;
-  }
+.install-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--input);
+  color: var(--text);
+  font-size: 22px;
+}
+.install-icon {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg,#7000ff,#ff007f,#00f0ff);
+  color: white;
+  font: 900 24px "Syne";
+}
+.install-main {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  border-radius: 13px;
+  background: #0f172a;
+  color: #fff;
+  font: 800 12px "Space Grotesk";
+  letter-spacing: .12em;
+}
+.install-later {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  color: var(--text-mute);
+  font: 700 10px "Space Grotesk";
+  letter-spacing: .14em;
 }
