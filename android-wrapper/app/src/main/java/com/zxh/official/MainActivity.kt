@@ -83,19 +83,10 @@ class MainActivity : Activity() {
             }
 
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-                val uri = request.url
-                return if (uri.scheme == "https" && uri.host == Uri.parse(startUrl).host) {
-                    false
-                } else if (uri.scheme == "http" || uri.scheme == "https") {
-                    try {
-                        startActivity(Intent(Intent.ACTION_VIEW, uri))
-                    } catch (_: Exception) {
-                        Toast.makeText(this@MainActivity, "Unable to open this link", Toast.LENGTH_SHORT).show()
-                    }
-                    true
-                } else {
-                    true
-                }
+                // Keep every normal website link inside this WebView; never hand it to Chrome.
+                // Block non-web schemes so external apps are not launched unexpectedly.
+                val scheme = request.url.scheme?.lowercase()
+                return scheme != "http" && scheme != "https"
             }
         }
 
