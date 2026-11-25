@@ -1189,6 +1189,10 @@ async function boot() {
     if (toolId) { const t = tools.find(x => x.id === toolId); if (t) openItem(t); }
   }, 800);
 }
-export function mountLegacyApp() { boot(); }
+window.__zxhLegacyBoot = boot;
 
 })();
+
+export function mountLegacyApp() {
+  (window as any).__zxhLegacyBoot();
+}
