@@ -11,6 +11,7 @@ const categories = (items: ToolItem[]) => ["All", ...Array.from(new Set(items.ma
 const isNew = (item: ToolItem) => { const created = item.createdAt; const timestamp = typeof created === "number" ? created : created ? Date.parse(created) : 0; return item.isNew === true || item.badge === "new" || (!!timestamp && (Date.now() - timestamp) / 86400000 <= 7); };
 const iconIsImage = (value: string) => /^(https?:|data:|\/)/.test(value);
 const formatCount = (value: number) => value >= 1e6 ? (value / 1e6).toFixed(1) + "M" : value >= 1e3 ? (value / 1e3).toFixed(1) + "K" : String(value);
+const getTimestamp = (value: string | number | undefined) => { if (typeof value === "number") return value; if (!value) return 0; const parsed = Date.parse(value); return Number.isNaN(parsed) ? 0 : parsed; };
 const toArray = <T,>(value: unknown): T[] => Array.isArray(value) ? value as T[] : value && typeof value === "object" ? Object.entries(value).map(([id, item]) => ({ ...(item as object), id } as T)) : [];
 
 function ToolCard({ item, views, rating, favorite, rated, onOpen, onFavorite, onShare, onReview, onCopy }: {
@@ -78,8 +79,6 @@ export default function HomePage() {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [feedbackStatus, setFeedbackStatus] = useState("");
   const [bootVisible, setBootVisible] = useState(true);
-  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
-  const [installVisible, setInstallVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -88,12 +87,7 @@ export default function HomePage() {
       setTheme(localStorage.getItem("zxhTheme") === "dark" ? "dark" : "light");
     } catch { /* use defaults */ }
     const timer = window.setTimeout(() => setBootVisible(false), 1800);
-    const installTimer = window.setTimeout(() => {
-      if (!window.matchMedia("(display-mode: standalone)").matches && localStorage.getItem("zxhInstalled") !== "1") setInstallVisible(true);
-    }, 5000);
-    const beforeInstall = (event: Event) => { event.preventDefault(); setInstallPrompt(event as BeforeInstallPromptEvent); };
-    window.addEventListener("beforeinstallprompt", beforeInstall);
-    return () => { clearTimeout(timer); clearTimeout(installTimer); window.removeEventListener("beforeinstallprompt", beforeInstall); };
+    return () => { clearTimeout(timer); };
   }, []);
 
   useEffect(() => {
@@ -103,11 +97,11 @@ export default function HomePage() {
 
   useEffect(() => {
     const unsubscribers = [
-      onValue(ref(database, "tools"), snapshot => setTools(toArray<ToolItem>(snapshot.val())) , () => setDatabaseStatus("OFFLINE")),
-      onValue(ref(database, "settings"), snapshot => setSettings(snapshot.val() || {})),
-      onValue(ref(database, "notifications"), snapshot => setNotifications(toArray<NotificationItem>(snapshot.val()).sort((a,b) => Number(b.createdAt || 0) - Number(a.createdAt || 0)))),
-      onValue(ref(database, "stats/toolViews"), snapshot => setViews(snapshot.val() || {})),
-      onValue(ref(database, "stats/views"), snapshot => setSiteViews(Number(snapshot.val() || 0))),
+      onValue(ref(database, "tools"), snapshot => { setTools(toArray<ToolItem>(snapshot.val())); setDatabaseStatus("LIVE"); }, () => setDatabaseStatus("OFFLINE")),
+      onValue(ref(database, "settings"), snapshot => setSettings(snapshot.val() || {}), () => setDatabaseStatus("OFFLINE")),
+      onValue(ref(database, "notifications"), snapshot => setNotifications(toArray<NotificationItem>(snapshot.val()).sort((a,b) => getTimestamp(b.createdAt) - getTimestamp(a.createdAt))), () => setDatabaseStatus("OFFLINE")),
+      onValue(ref(database, "stats/toolViews"), snapshot => setViews(snapshot.val() || {}), () => setDatabaseStatus("OFFLINE")),
+      onValue(ref(database, "stats/views"), snapshot => setSiteViews(Number(snapshot.val() || 0)), () => setDatabaseStatus("OFFLINE")),
       onValue(ref(database, "reviews"), snapshot => {
         const raw = snapshot.val() || {};
         const aggregate: Record<string, Rating> = {};
@@ -117,14 +111,13 @@ export default function HomePage() {
           aggregate[id] = { avg: valid.length ? valid.reduce((sum, entry) => sum + Number(entry.rating), 0) / valid.length : 0, count: valid.length };
         });
         setRatings(aggregate);
-      })
+      }, () => setDatabaseStatus("OFFLINE"))
     ];
-    setDatabaseStatus("LIVE");
     return () => unsubscribers.forEach(unsubscribe => unsubscribe());
   }, []);
 
   useEffect(() => {
-    if (!databaseStatus || databaseStatus === "OFFLINE") return;
+    if (databaseStatus !== "LIVE") return;
     const visitor = localStorage.getItem("zxh_visitor_id") || `v_${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`;
     localStorage.setItem("zxh_visitor_id", visitor);
     const today = new Date().toISOString().slice(0,10);
@@ -148,8 +141,8 @@ export default function HomePage() {
       if (!showFavorites && activeCategory !== "All" && category !== activeCategory) return false;
       return !search || `${item.name || ""} ${item.description || ""} ${category}`.toLowerCase().includes(search);
     });
-    return result.sort((a,b) => sort === "za" ? (b.name || "").localeCompare(a.name || "") : sort === "new" ? Number(isNew(b))-Number(isNew(a)) : sort === "downloads" ? Number(b.downloads || 0)-Number(a.downloads || 0) : sort === "stars" ? Number(b.stars || 0)-Number(a.stars || 0) : (a.name || "").localeCompare(b.name || ""));
-  }, [tools, query, activeCategory, showFavorites, favorites, sort]);
+    return result.sort((a,b) => sort === "za" ? (b.name || "").localeCompare(a.name || "") : sort === "new" ? Number(isNew(b))-Number(isNew(a)) : sort === "downloads" ? Number(b.downloads || 0)-Number(a.downloads || 0) : sort === "stars" ? Number(ratings[b.id || ""]?.avg || 0)-Number(ratings[a.id || ""]?.avg || 0) : (a.name || "").localeCompare(b.name || ""));
+  }, [tools, query, activeCategory, showFavorites, favorites, sort, ratings]);
 
   const notify = (message: string) => { setToast(message); window.setTimeout(() => setToast(""), 2400); };
   const track = async (item: ToolItem, action: "clicks" | "views" | "uses") => {
@@ -159,6 +152,7 @@ export default function HomePage() {
     const category = item.category || "Other";
     await update(ref(database, `stats/tools/${id}`), { name: item.name || "", category, [action === "clicks" ? "lastClickedAt" : action === "views" ? "lastViewedAt" : "lastUsedAt"]: Date.now() });
     await runTransaction(ref(database, `stats/tools/${id}/${action}`), value => (Number(value) || 0) + 1);
+    if (action === "views") await runTransaction(ref(database, `stats/toolViews/${id}`), value => (Number(value) || 0) + 1);
     await runTransaction(ref(database, `stats/daily/${day}/tool${action.charAt(0).toUpperCase() + action.slice(1)}`), value => (Number(value) || 0) + 1);
     await push(ref(database, "stats/recentActivity"), { type: action.slice(0,-1), toolId: id, toolName: item.name || "", category, timestamp: Date.now() });
   };
@@ -202,11 +196,6 @@ export default function HomePage() {
     try { await push(ref(database, "comments"), { email: feedbackEmail.trim(), message: feedbackMessage.trim(), timestamp: new Date().toISOString() }); setFeedbackEmail(""); setFeedbackMessage(""); setFeedbackStatus("Sent ✓"); notify("Feedback sent"); }
     catch { setFeedbackStatus("Error sending feedback."); }
   };
-  const submitInstall = async () => {
-    if (!installPrompt) { notify("Chrome menu (⋮) → Install app"); return; }
-    try { await installPrompt.prompt(); const choice = await installPrompt.userChoice; if (choice.outcome === "accepted") { localStorage.setItem("zxhInstalled", "1"); setInstallVisible(false); } setInstallPrompt(null); }
-    catch { notify("Please try again"); }
-  };
   const compactOpen = (item: ToolItem) => openTool(item);
 
   useEffect(() => {
@@ -249,10 +238,8 @@ export default function HomePage() {
       <div className={`toast ${toast ? "show" : ""}`}>{toast}</div>
       {notificationsOpen && <section className="notification-center on"><div className="notification-shell"><header className="notification-head"><div><span className="kicker">ZXH / UPDATES</span><h2>WHAT&apos;S NEW.</h2></div><button className="notification-close" onClick={() => setNotificationsOpen(false)}>×</button></header><div className="notification-meta"><span>LATEST UPDATES</span><span>LIVE</span></div><div className="notification-list">{notifications.slice(0,20).map((item,index) => <div className="notification-item unread" key={item.id || index}><div className="notification-item-icon">✦</div><div><h4>{item.title || "UPDATE"}</h4><p>{item.text || item.message || ""}</p></div><time>{item.createdAt ? new Date(item.createdAt).toLocaleString() : "NOW"}</time></div>)}</div>{!notifications.length && <div className="notification-empty">YOU&apos;RE ALL CAUGHT UP.</div>}</div></section>}
       {reviewItem && <div className="review-modal on"><div className="review-modal-card"><button className="review-close" onClick={() => setReviewItem(null)}>×</button><div className="review-kicker"><span className="k-star">★</span> Rate this tool</div><h2 className="review-tool-name">{reviewItem.name}</h2><div className="review-sub">Tap stars to rate</div><div className="review-star-row">{[1,2,3,4,5].map(value => <button key={value} type="button" className={value <= reviewRating ? "active" : ""} onClick={() => setReviewRating(value)}>★</button>)}</div><div className="review-selected-text">{["","Poor","Fair","Good","Very Good","Excellent"][reviewRating]}{reviewRating ? ` · ${reviewRating}/5` : ""}</div><textarea className="review-input" value={reviewText} onChange={event => setReviewText(event.target.value)} placeholder="Share your experience (optional)…" rows={3}/><button className="review-submit" onClick={() => void submitReview()}>Submit Review</button></div></div>}
-      {installVisible && <div className="install-overlay"><div className="install-card"><button className="install-close" onClick={() => setInstallVisible(false)}>×</button><img src="/assets/icon-512.png" alt="ZXH" className="install-icon"/><span className="kicker">ZXH / APP</span><h2>KEEP ZXH WITH YOU.</h2><p>Install ZXH OFFICIAL TOOLS for the best app experience — fast, offline-ready, home screen icon.</p><button className="btn dark install-main" onClick={() => void submitInstall()}>INSTALL NOW ↓</button><button className="install-later" onClick={() => setInstallVisible(false)}>NOT NOW</button></div></div>}
       <button className="back-to-top show" type="button" onClick={() => window.scrollTo({top:0,behavior:"smooth"})}>↑</button>
     </div>
   </>;
 }
 
-interface BeforeInstallPromptEvent extends Event { prompt: () => Promise<void>; userChoice: Promise<{outcome:"accepted"|"dismissed";platform:string}>; }
