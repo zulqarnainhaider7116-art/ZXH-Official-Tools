@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { onValue, push, ref, runTransaction, set, update } from "firebase/database";
 import { database } from "@/lib/firebase";
-import type { NotificationItem, ReviewMap, ToolItem } from "@/lib/types";
+import type { NotificationItem, ToolItem } from "@/lib/types";
 
 type Rating = { avg: number; count: number };
 type SortMode = "az" | "za" | "new" | "downloads" | "stars";
@@ -207,9 +207,20 @@ export default function HomePage() {
     try { await installPrompt.prompt(); const choice = await installPrompt.userChoice; if (choice.outcome === "accepted") { localStorage.setItem("zxhInstalled", "1"); setInstallVisible(false); } setInstallPrompt(null); }
     catch { notify("Please try again"); }
   };
-  const compactOpen = (item: ToolItem) => openTool(item);\n\n  useEffect(() => {\n    if (!tools.length) return;\n    const requestedId = new URLSearchParams(location.search).get("tool");\n    if (!requestedId) return;\n    const requestedTool = tools.find(item => item.id === requestedId);\n    if (requestedTool) openTool(requestedTool);\n    // Run only when the realtime tools collection first becomes available.\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, [tools.length]);
+  const compactOpen = (item: ToolItem) => openTool(item);
+
+  useEffect(() => {
+    if (!tools.length) return;
+    const requestedId = new URLSearchParams(location.search).get("tool");
+    if (!requestedId) return;
+    const requestedTool = tools.find(item => item.id === requestedId);
+    if (requestedTool) openTool(requestedTool);
+    // Run only when the realtime tools collection first becomes available.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tools.length]);
   const trending = [...tools].sort((a,b) => Number(views[b.id || ""] || 0)-Number(views[a.id || ""] || 0)).filter(item => Number(views[item.id || ""] || 0)>0).slice(0,10);
-  const featuredItems = tools.filter(item => item.featured === true).slice(0,10);\n  const featured = featuredItems.length ? featuredItems : tools.slice(0,10);
+  const featuredItems = tools.filter(item => item.featured === true).slice(0,10);
+  const featured = featuredItems.length ? featuredItems : tools.slice(0,10);
   const newest = tools.filter(isNew).slice(0,10);
 
   return <>
