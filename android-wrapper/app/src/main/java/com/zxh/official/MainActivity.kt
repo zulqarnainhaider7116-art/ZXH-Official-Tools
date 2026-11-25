@@ -49,6 +49,39 @@ class MainActivity : Activity() {
         }
 
         webView.webViewClient = object : WebViewClient() {
+            override fun onPageFinished(view: WebView, url: String) {
+                super.onPageFinished(view, url)
+                // Keep the website's PWA install overlay hidden inside this native Android app.
+                val hideInstallPopup = """
+                    (function() {
+                      var styleId = 'zxh-native-hide-install-popup';
+                      if (!document.getElementById(styleId)) {
+                        var style = document.createElement('style');
+                        style.id = styleId;
+                        style.textContent = '#installPromptOverlay,.install-overlay{display:none!important;visibility:hidden!important;opacity:0!important;pointer-events:none!important}';
+                        (document.head || document.documentElement).appendChild(style);
+                      }
+                      var hide = function() {
+                        var popup = document.getElementById('installPromptOverlay');
+                        if (popup) {
+                          popup.style.setProperty('display','none','important');
+                          popup.style.setProperty('visibility','hidden','important');
+                        }
+                        document.querySelectorAll('.install-overlay').forEach(function(el) {
+                          el.style.setProperty('display','none','important');
+                          el.style.setProperty('visibility','hidden','important');
+                        });
+                      };
+                      hide();
+                      if (!window.__zxhInstallPopupObserver && document.documentElement) {
+                        window.__zxhInstallPopupObserver = new MutationObserver(hide);
+                        window.__zxhInstallPopupObserver.observe(document.documentElement,{childList:true,subtree:true});
+                      }
+                    })();
+                """.trimIndent()
+                view.evaluateJavascript(hideInstallPopup, null)
+            }
+
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
                 val uri = request.url
                 return if (uri.scheme == "https" && uri.host == Uri.parse(startUrl).host) {
