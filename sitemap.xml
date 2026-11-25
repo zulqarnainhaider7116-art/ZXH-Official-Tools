@@ -1,27 +1,9 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-<urlset
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    <!-- Homepage -->
     <url>
-        <loc>https://zxh-official-tools.vercel.app/</loc>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <!-- Maintenance Page -->
-    <url>
-        <loc>https://zxh-official-tools.vercel.app/maintenance.html</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.3</priority>
-    </url>
-
-    <!-- Notification Page -->
-    <url>
-        <loc>https://zxh-official-tools.vercel.app/notification.html</loc>
-        <changefreq>weekly</changefreq>
-        <priority>0.3</priority>
+        <loc>https://zxh-official-tools.pages.dev/</loc>
     </url>
 
 </urlset>
