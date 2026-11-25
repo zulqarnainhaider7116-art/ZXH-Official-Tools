@@ -90,7 +90,8 @@ export default function HomePage() {
       window.matchMedia("(display-mode: standalone)").matches ||
       (window.navigator as Navigator & { standalone?: boolean }).standalone === true;
     const isIOS = () => /iphone|ipad|ipod/i.test(navigator.userAgent);
-    if (isStandalone() || localStorage.getItem("zxhInstalled") === "1") return;
+    const isAndroidWrapper = new URLSearchParams(window.location.search).get("nativeApp") === "1";
+    if (isAndroidWrapper || isStandalone() || localStorage.getItem("zxhInstalled") === "1") return;
 
     const handleInstallPrompt = (event: Event) => {
       event.preventDefault();
