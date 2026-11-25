@@ -557,91 +557,102 @@ html[data-theme="dark"] .notification-close{background:#f1f5f9;color:#0f172a}
 }
 
 
-/* MOBILE DRAWER + FULL-SCREEN WELCOME REFINEMENT */
-@media (max-width: 899px) {
+/* DESKTOP-ONLY DRAWER + FULL-SCREEN WELCOME REFINEMENT */
+@media (min-width: 900px) {
   .drawer {
-    box-sizing: border-box;
-    min-height: 100vh;
-    min-height: 100dvh;
-    padding: max(72px, 8dvh) 22px max(24px, 4dvh);
+    width: min(460px, 42vw);
+    min-width: 380px;
+    height: 100vh;
+    height: 100dvh;
+    padding: 88px 38px 34px;
     display: flex;
     flex-direction: column;
     align-items: stretch;
     overflow-y: auto;
   }
 
+  .drawer .kicker {
+    margin-bottom: 16px;
+    font-size: 11px;
+  }
+
   .drawer h2 {
-    margin: 18px 0 clamp(24px, 4dvh, 38px);
-    font-size: clamp(29px, 8vw, 40px);
+    margin: 12px 0 34px;
+    font-size: clamp(38px, 3.2vw, 54px);
+    line-height: 1.08;
   }
 
   .drawer-nav-link {
-    flex: 1 0 auto;
-    min-height: clamp(54px, 7.5dvh, 68px);
-    margin-bottom: clamp(8px, 1.2dvh, 12px);
-    padding: 14px 15px;
-    font-size: 12px;
+    min-height: 62px;
+    padding: 17px 18px;
+    margin-bottom: 12px;
+    gap: 14px;
+    font-size: 13px;
+    border-radius: 15px;
   }
 
   .drawer-nav-link .dnav-icon {
-    font-size: 19px;
+    font-size: 21px;
   }
 
   .drawer-links {
     margin-top: auto;
-    padding-top: clamp(24px, 4dvh, 38px);
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    padding-top: 36px;
+    gap: 8px;
   }
 
   .drawer-links a {
-    min-height: 48px;
-    padding: 12px 2px;
+    min-height: 54px;
+    padding: 14px 2px;
     font-size: 11px;
   }
 
   .boot {
-    box-sizing: border-box;
     min-height: 100vh;
     min-height: 100dvh;
-    padding: max(28px, 5dvh) 20px;
-    gap: clamp(18px, 3.2dvh, 30px);
+    padding: 48px 6vw;
+    gap: clamp(22px, 2.5vh, 34px);
   }
 
   .boot-logo {
-    font-size: clamp(112px, 31vw, 190px);
+    font-size: clamp(170px, 22vw, 310px);
   }
 
   .boot-official {
-    font-size: clamp(22px, 6vw, 36px);
-    letter-spacing: .38em;
+    font-size: clamp(34px, 3.2vw, 52px);
+    letter-spacing: .42em;
   }
 
   .boot-divider {
-    width: clamp(90px, 26vw, 140px);
-    height: 3px;
-    margin: 8px 0;
+    width: clamp(130px, 13vw, 210px);
+    height: 4px;
+    margin: 12px 0;
   }
 
   .boot-welcome {
-    max-width: min(94vw, 520px);
-    font-size: clamp(18px, 5vw, 24px);
-    line-height: 1.4;
+    max-width: min(1100px, 82vw);
+    font-size: clamp(26px, 2.2vw, 40px);
+    line-height: 1.35;
   }
 
   .boot-subtitle {
-    max-width: min(88vw, 420px);
-    font-size: clamp(14px, 3.8vw, 16px);
-    line-height: 1.7;
+    max-width: min(760px, 70vw);
+    font-size: clamp(17px, 1.25vw, 21px);
+    line-height: 1.75;
   }
 
   .boot-track {
-    width: min(340px, 78vw);
-    height: 6px;
+    width: min(520px, 38vw);
+    height: 8px;
+    margin-top: 10px;
   }
 
   .boot-percent {
-    font-size: clamp(28px, 7vw, 34px);
+    font-size: clamp(34px, 2.6vw, 46px);
+    min-height: 48px;
+  }
+
+  .boot-status {
+    font-size: 12px;
   }
 }
