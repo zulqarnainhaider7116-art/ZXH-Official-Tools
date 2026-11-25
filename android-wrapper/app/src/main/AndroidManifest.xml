@@ -5,8 +5,8 @@
     <application
         android:allowBackup="false"
         android:label="ZXH OFFICIAL TOOLKIT"
-        android:icon="@android:drawable/sym_def_app_icon"
-        android:roundIcon="@android:drawable/sym_def_app_icon"
+        android:icon="@drawable/ic_launcher"
+        android:roundIcon="@drawable/ic_launcher"
         android:usesCleartextTraffic="false"
         android:theme="@style/ZXHTheme">
         <activity
