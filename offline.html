@@ -1,228 +1,26 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <meta name="theme-color" content="#05070d">
-
-    <title>Offline • ZXH OFFICIAL TOOLS</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            overflow: hidden;
-            font-family:
-                Inter,
-                system-ui,
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                sans-serif;
-
-            color: #fff;
-            background:
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(0, 229, 255, .16),
-                    transparent 35%
-                ),
-                radial-gradient(
-                    circle at 80% 80%,
-                    rgba(124, 58, 237, .18),
-                    transparent 35%
-                ),
-                #05070d;
-        }
-
-        .orb {
-            position: fixed;
-            width: 280px;
-            height: 280px;
-            border-radius: 50%;
-            filter: blur(80px);
-            opacity: .35;
-            pointer-events: none;
-        }
-
-        .orb.one {
-            top: -100px;
-            left: -80px;
-            background: #00e5ff;
-        }
-
-        .orb.two {
-            right: -100px;
-            bottom: -100px;
-            background: #7c3aed;
-        }
-
-        .card {
-            width: 100%;
-            max-width: 430px;
-            padding: 38px 26px;
-            text-align: center;
-
-            border: 1px solid rgba(255,255,255,.12);
-            border-radius: 28px;
-
-            background: rgba(255,255,255,.055);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-
-            box-shadow:
-                0 30px 80px rgba(0,0,0,.45),
-                inset 0 1px 0 rgba(255,255,255,.08);
-        }
-
-        .icon {
-            width: 86px;
-            height: 86px;
-            margin: 0 auto 22px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border-radius: 24px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(0,229,255,.18),
-                    rgba(124,58,237,.2)
-                );
-
-            border: 1px solid rgba(0,229,255,.25);
-
-            font-size: 40px;
-
-            box-shadow:
-                0 0 35px rgba(0,229,255,.12);
-        }
-
-        h1 {
-            font-size: 25px;
-            font-weight: 800;
-            margin-bottom: 10px;
-            letter-spacing: -.5px;
-        }
-
-        p {
-            color: #9ca3af;
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        button {
-            width: 100%;
-            border: 0;
-            padding: 14px 20px;
-            border-radius: 15px;
-
-            color: #001014;
-            background: linear-gradient(
-                135deg,
-                #00e5ff,
-                #67e8f9
-            );
-
-            font-size: 15px;
-            font-weight: 800;
-            cursor: pointer;
-
-            transition: .25s ease;
-        }
-
-        button:active {
-            transform: scale(.97);
-        }
-
-        .status {
-            margin-top: 18px;
-            font-size: 12px;
-            color: #6b7280;
-        }
-
-        .brand {
-            margin-top: 25px;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: #4b5563;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Offline — ZXH Official Tools</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{min-height:100vh;display:grid;place-items:center;background:#f1f5f9;color:#0f172a;font-family:system-ui,sans-serif;padding:24px;text-align:center}
+.wrap{max-width:480px}
+h1{font-size:clamp(64px,18vw,140px);font-weight:900;letter-spacing:-.04em;background:linear-gradient(135deg,#7000ff,#ff007f,#00f0ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:12px}
+h2{font-size:clamp(22px,5vw,36px);font-weight:900;margin:0 0 12px;text-transform:uppercase}
+p{color:#475569;font-size:15px;line-height:1.7;margin-bottom:22px}
+a{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:999px;background:#0f172a;color:#fff;text-decoration:none;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+a:hover{background:linear-gradient(135deg,#7000ff,#ff007f)}
+</style>
 </head>
-
 <body>
-
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-
-    <main class="card">
-
-        <div class="icon">
-            📡
-        </div>
-
-        <h1>
-            You're Offline
-        </h1>
-
-        <p>
-            ZXH OFFICIAL TOOLS can't connect to the internet
-            right now. Check your connection and try again.
-        </p>
-
-        <button onclick="location.reload()">
-            ↻ Try Again
-        </button>
-
-        <div class="status" id="status">
-            Waiting for connection...
-        </div>
-
-        <div class="brand">
-            ZXH OFFICIAL TOOLS
-        </div>
-
-    </main>
-
-    <script>
-        function updateStatus() {
-            const status = document.getElementById("status");
-
-            if (navigator.onLine) {
-                status.textContent = "Connection restored ✓";
-
-                setTimeout(() => {
-                    location.href = "./index.html";
-                }, 700);
-            } else {
-                status.textContent = "No internet connection";
-            }
-        }
-
-        window.addEventListener("online", updateStatus);
-        window.addEventListener("offline", updateStatus);
-
-        updateStatus();
-    </script>
-
+<div class="wrap">
+  <h1>ZXH</h1>
+  <h2>You're Offline</h2>
+  <p>The ZXH network is unreachable. Please check your connection and retry.</p>
+  <a href="/">↻ RETRY NOW</a>
+</div>
 </body>
 </html>
