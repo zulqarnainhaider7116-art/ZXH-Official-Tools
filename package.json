@@ -1,0 +1,16 @@
+{
+  "name": "zxh-official-tools",
+  "version": "2.0.0",
+  "description": "ZXH Official Tools — Premium Free Tools Hub (Cloudflare Pages)",
+  "scripts": {
+    "build": "node build.js",
+    "deploy": "npm run build && wrangler pages deploy public",
+    "preview": "wrangler pages dev public"
+  },
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.1",
+    "clean-css": "^5.3.3",
+    "html-minifier-terser": "^7.2.0",
+    "wrangler": "^3.78.0"
+  }
+}
