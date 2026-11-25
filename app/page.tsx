@@ -159,7 +159,7 @@ export default function HomePage() {
     const category = item.category || "Other";
     await update(ref(database, `stats/tools/${id}`), { name: item.name || "", category, [action === "clicks" ? "lastClickedAt" : action === "views" ? "lastViewedAt" : "lastUsedAt"]: Date.now() });
     await runTransaction(ref(database, `stats/tools/${id}/${action}`), value => (Number(value) || 0) + 1);
-    await runTransaction(ref(database, `stats/daily/${day}/tool${action[0].toUpperCase() + action.slice(1)}`), value => (Number(value) || 0) + 1);
+    await runTransaction(ref(database, `stats/daily/${day}/tool${action.charAt(0).toUpperCase() + action.slice(1)}`), value => (Number(value) || 0) + 1);
     await push(ref(database, "stats/recentActivity"), { type: action.slice(0,-1), toolId: id, toolName: item.name || "", category, timestamp: Date.now() });
   };
   const openTool = (item: ToolItem) => {
