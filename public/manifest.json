@@ -1,26 +1,18 @@
 {
   "id": "/",
-  "name": "ZXH Official Tools — Premium Free Tools Hub",
+  "name": "ZXH OFFICIAL TOOLKIT — 100+ Free Online Tools",
   "short_name": "ZXH Tools",
-  "description": "ZXH Official Tools by Zulqarnain X Haider — a mobile-friendly hub for digital tools and utilities.",
+  "description": "ZXH OFFICIAL TOOLKIT by Zulqarnain X Haider: free online developer, AI, SEO, media, security, Islamic and productivity tools.",
   "lang": "en-PK",
   "dir": "ltr",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "display_override": [
-    "standalone",
-    "minimal-ui",
-    "browser"
-  ],
+  "display_override": ["standalone", "minimal-ui", "browser"],
   "orientation": "any",
   "background_color": "#f1f5f9",
-  "theme_color": "#0a0f1c",
-  "categories": [
-    "utilities",
-    "productivity",
-    "education"
-  ],
+  "theme_color": "#f1f5f9",
+  "categories": ["utilities", "productivity", "education", "developer"],
   "prefer_related_applications": false,
   "icons": [
     {
