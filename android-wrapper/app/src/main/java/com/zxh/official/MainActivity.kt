@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.view.Window
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
@@ -17,6 +19,8 @@ import android.widget.Toast
 
 class MainActivity : Activity() {
     private lateinit var webView: WebView
+    private lateinit var rootLayout: FrameLayout
+    private var toolWebView: WebView? = null
     private var uploadCallback: ValueCallback<Array<Uri>>? = null
     private val fileRequestCode = 4107
     private val startUrl = "https://zxh-official-tools-hub.vercel.app/?nativeApp=1"
@@ -42,7 +46,7 @@ class MainActivity : Activity() {
             useWideViewPort = true
             loadWithOverviewMode = false
             javaScriptCanOpenWindowsAutomatically = true
-            setSupportMultipleWindows(false)
+            setSupportMultipleWindows(true)
             allowFileAccess = false
             allowContentAccess = true
             mediaPlaybackRequiresUserGesture = true
@@ -90,7 +94,7 @@ class MainActivity : Activity() {
             }
         }
 
-        webView.webChromeClient = object : WebChromeClient() {
+        webView.webChromeClient = object : WebChromeClient() {\n            override fun onCreateWindow(\n                view: WebView,\n                isDialog: Boolean,\n                isUserGesture: Boolean,\n                resultMsg: android.os.Message\n            ): Boolean {\n                // Open tool links (window.open / target=_blank) in a second WebView.\n                // Keep the original homepage WebView alive underneath so Back restores\n                // its exact scroll position and React state without reloading the site.\n                closeToolWebView()\n                val child = WebView(this@MainActivity)\n                child.setBackgroundColor(Color.WHITE)\n                child.settings.apply {\n                    javaScriptEnabled = true\n                    domStorageEnabled = true\n                    databaseEnabled = true\n                    loadsImagesAutomatically = true\n                    useWideViewPort = true\n                    loadWithOverviewMode = false\n                    javaScriptCanOpenWindowsAutomatically = true\n                    setSupportMultipleWindows(false)\n                    allowFileAccess = false\n                    allowContentAccess = true\n                    mediaPlaybackRequiresUserGesture = true\n                }\n                child.webViewClient = object : WebViewClient() {\n                    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {\n                        val scheme = request.url.scheme?.lowercase()\n                        return scheme != "http" && scheme != "https"\n                    }\n                }\n                child.webChromeClient = this\n                toolWebView = child\n                webView.visibility = View.GONE\n                rootLayout.addView(child, FrameLayout.LayoutParams(\n                    ViewGroup.LayoutParams.MATCH_PARENT,\n                    ViewGroup.LayoutParams.MATCH_PARENT\n                ))\n                val transport = resultMsg.obj as WebView.WebViewTransport\n                transport.webView = child\n                resultMsg.sendToTarget()\n                return true\n            }\n\n            override fun onCloseWindow(window: WebView) {\n                closeToolWebView()\n            }\n
             override fun onShowFileChooser(
                 view: WebView,
                 filePathCallback: ValueCallback<Array<Uri>>,
