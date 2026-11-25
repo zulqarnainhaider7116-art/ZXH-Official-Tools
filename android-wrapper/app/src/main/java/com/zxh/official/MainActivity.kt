@@ -94,7 +94,51 @@ class MainActivity : Activity() {
             }
         }
 
-        webView.webChromeClient = object : WebChromeClient() {\n            override fun onCreateWindow(\n                view: WebView,\n                isDialog: Boolean,\n                isUserGesture: Boolean,\n                resultMsg: android.os.Message\n            ): Boolean {\n                // Open tool links (window.open / target=_blank) in a second WebView.\n                // Keep the original homepage WebView alive underneath so Back restores\n                // its exact scroll position and React state without reloading the site.\n                closeToolWebView()\n                val child = WebView(this@MainActivity)\n                child.setBackgroundColor(Color.WHITE)\n                child.settings.apply {\n                    javaScriptEnabled = true\n                    domStorageEnabled = true\n                    databaseEnabled = true\n                    loadsImagesAutomatically = true\n                    useWideViewPort = true\n                    loadWithOverviewMode = false\n                    javaScriptCanOpenWindowsAutomatically = true\n                    setSupportMultipleWindows(false)\n                    allowFileAccess = false\n                    allowContentAccess = true\n                    mediaPlaybackRequiresUserGesture = true\n                }\n                child.webViewClient = object : WebViewClient() {\n                    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {\n                        val scheme = request.url.scheme?.lowercase()\n                        return scheme != "http" && scheme != "https"\n                    }\n                }\n                child.webChromeClient = this\n                toolWebView = child\n                webView.visibility = View.GONE\n                rootLayout.addView(child, FrameLayout.LayoutParams(\n                    ViewGroup.LayoutParams.MATCH_PARENT,\n                    ViewGroup.LayoutParams.MATCH_PARENT\n                ))\n                val transport = resultMsg.obj as WebView.WebViewTransport\n                transport.webView = child\n                resultMsg.sendToTarget()\n                return true\n            }\n\n            override fun onCloseWindow(window: WebView) {\n                closeToolWebView()\n            }\n
+        webView.webChromeClient = object : WebChromeClient() {
+            override fun onCreateWindow(
+                view: WebView,
+                isDialog: Boolean,
+                isUserGesture: Boolean,
+                resultMsg: android.os.Message
+            ): Boolean {
+                closeToolWebView()
+                val child = WebView(this@MainActivity)
+                child.setBackgroundColor(Color.WHITE)
+                child.settings.apply {
+                    javaScriptEnabled = true
+                    domStorageEnabled = true
+                    databaseEnabled = true
+                    loadsImagesAutomatically = true
+                    useWideViewPort = true
+                    loadWithOverviewMode = false
+                    javaScriptCanOpenWindowsAutomatically = true
+                    setSupportMultipleWindows(false)
+                    allowFileAccess = false
+                    allowContentAccess = true
+                    mediaPlaybackRequiresUserGesture = true
+                }
+                child.webViewClient = object : WebViewClient() {
+                    override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
+                        val scheme = request.url.scheme?.lowercase()
+                        return scheme != "http" && scheme != "https"
+                    }
+                }
+                child.webChromeClient = this
+                toolWebView = child
+                webView.visibility = View.GONE
+                rootLayout.addView(child, FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                ))
+                val transport = resultMsg.obj as WebView.WebViewTransport
+                transport.webView = child
+                resultMsg.sendToTarget()
+                return true
+            }
+
+            override fun onCloseWindow(window: WebView) {
+                closeToolWebView()
+            }
             override fun onShowFileChooser(
                 view: WebView,
                 filePathCallback: ValueCallback<Array<Uri>>,
@@ -112,12 +156,26 @@ class MainActivity : Activity() {
             }
         }
 
-        setContentView(webView)
+        rootLayout = FrameLayout(this)
+        rootLayout.addView(webView, FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        ))
+        setContentView(rootLayout)
         if (savedInstanceState != null) {
             webView.restoreState(savedInstanceState)
         } else {
             webView.loadUrl(startUrl)
         }
+    }
+
+    private fun closeToolWebView() {
+        val child = toolWebView ?: return
+        rootLayout.removeView(child)
+        child.stopLoading()
+        child.destroy()
+        toolWebView = null
+        webView.visibility = View.VISIBLE
     }
 
     @Deprecated("Deprecated in Android API, retained for broad device compatibility")
@@ -158,6 +216,12 @@ class MainActivity : Activity() {
             return
         }
 
+        val child = toolWebView
+        if (child != null) {
+            if (child.canGoBack()) child.goBack() else closeToolWebView()
+            return
+        }
+
         // At the homepage, exit instead of walking through duplicate homepage/redirect entries.
         if (isHomePage(webView.url)) {
             finish()
@@ -173,6 +237,7 @@ class MainActivity : Activity() {
 
     override fun onDestroy() {
         uploadCallback?.onReceiveValue(null)
+        toolWebView?.destroy()
         webView.destroy()
         super.onDestroy()
     }
