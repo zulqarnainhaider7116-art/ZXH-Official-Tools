@@ -135,12 +135,35 @@ class MainActivity : Activity() {
         super.onSaveInstanceState(outState)
     }
 
+    private fun isHomePage(url: String?): Boolean {
+        if (url.isNullOrBlank()) return true
+        return try {
+            val current = Uri.parse(url)
+            val homeHost = Uri.parse(startUrl).host
+            current.host.equals(homeHost, ignoreCase = true) &&
+                (current.path.isNullOrBlank() || current.path == "/" || current.path == "/index.html")
+        } catch (_: Exception) {
+            false
+        }
+    }
+
     @Deprecated("Deprecated in Android API, retained for compatibility")
     override fun onBackPressed() {
-        if (::webView.isInitialized && webView.canGoBack()) {
+        if (!::webView.isInitialized) {
+            super.onBackPressed()
+            return
+        }
+
+        // At the homepage, exit instead of walking through duplicate homepage/redirect entries.
+        if (isHomePage(webView.url)) {
+            finish()
+            return
+        }
+
+        if (webView.canGoBack()) {
             webView.goBack()
         } else {
-            super.onBackPressed()
+            finish()
         }
     }
 
