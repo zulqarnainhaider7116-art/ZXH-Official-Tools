@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* ================================================================
    ZXH OFFICIAL TOOLS — FINAL FULL WORKING
    ✅ Share button on every tool
@@ -432,7 +433,7 @@ const ZXH_HTML = `
   </div>
   <div class="boot-divider"></div>
   <strong class="boot-welcome">Welcome to <span class="accent">ZXH OFFICIAL TOOLS</span> 🚀</strong>
-  <p class="boot-subtitle">Your premium digital workspace — tools, apps & source codes in one place.</p>
+  <p class="boot-subtitle">Your premium digital workspace — tools and utilities in one place.</p>
   <div class="boot-track"><i id="bootBar"></i></div>
   <span class="boot-percent" id="bootPercent">0%</span>
   <span class="boot-status" id="bootStatus">LOADING EXPERIENCE</span>
@@ -440,7 +441,7 @@ const ZXH_HTML = `
 <div class="site">
   <header class="nav">
     <a class="brand" href="#home"><span class="brand-mark">Z</span><span><b id="brandName">ZXH OFFICIAL TOOLS</b><small>DIGITAL TOOL SYSTEM</small></span></a>
-    <nav><a href="#home">HOME</a><a href="#trendingSection">TRENDING</a><a href="#library">TOOLS</a><a href="#appsSection">APPS</a><a href="#sourceSection">SOURCE</a></nav>
+    <nav><a href="#home">HOME</a><a href="#trendingSection">TRENDING</a><a href="#library">TOOLS</a></nav>
     <div class="nav-actions">
       <button id="notificationBtn" class="round notification-btn" aria-label="Notifications"><span>♧</span><b id="notificationDot"></b></button>
       <button id="themeToggle" class="round" aria-label="Toggle theme"><span id="themeIcon">☼</span></button>
@@ -454,8 +455,6 @@ const ZXH_HTML = `
     <a href="#home" class="drawer-nav-link"><span class="dnav-icon">🏠</span><span class="dnav-text">HOME</span><span class="dnav-num">01</span></a>
     <a href="#trendingSection" class="drawer-nav-link drawer-nav-trending"><span class="dnav-icon">🔥</span><span class="dnav-text">TRENDING</span><span class="dnav-num">02</span></a>
     <a href="#library" class="drawer-nav-link"><span class="dnav-icon">🛠️</span><span class="dnav-text">TOOLS</span><span class="dnav-num">03</span></a>
-    <a href="#appsSection" class="drawer-nav-link drawer-nav-apps"><span class="dnav-icon">📱</span><span class="dnav-text">APPS</span><span class="dnav-num">04</span></a>
-    <a href="#sourceSection" class="drawer-nav-link drawer-nav-source"><span class="dnav-icon">💻</span><span class="dnav-text">SOURCE CODE</span><span class="dnav-num">05</span></a>
     <a href="#about" class="drawer-nav-link"><span class="dnav-icon">👤</span><span class="dnav-text">ABOUT</span><span class="dnav-num">06</span></a>
     <div class="drawer-links"><a id="ownerLink" href="#" target="_blank">OWNER CONTACT ↗</a><a id="channelLink" href="#" target="_blank">WHATSAPP CHANNEL ↗</a><a id="communityLink" href="#" target="_blank">COMMUNITY ↗</a></div>
   </aside>
@@ -465,7 +464,7 @@ const ZXH_HTML = `
       <div class="hero-copy">
         <span class="kicker">01 / INTERACTIVE DIGITAL TOOLKIT ☠️🚀</span>
         <h1><span class="line">ZULQARNAIN</span><span class="line accent">X</span><span class="line accent">HAIDER.</span></h1>
-        <p>Premium tools, apps & source codes — all free, all fast, all mobile-friendly. Crafted with enterprise-grade architecture by ZXH.</p>
+        <p>Premium tools — all free, all fast, all mobile-friendly. Crafted with enterprise-grade architecture by ZXH.</p>
         <div class="actions"><a class="btn dark" href="#trendingSection">🔥 TRENDING <b>↘</b></a><a class="btn ghost" href="#library">EXPLORE <b>↘</b></a></div>
       </div>
     </section>
@@ -492,35 +491,6 @@ const ZXH_HTML = `
       <div id="categories" class="categories"></div>
       <div id="toolsGrid" class="tools"></div>
       <div id="empty" class="empty" hidden>NO TOOLS FOUND.</div>
-    </section>
-    <section id="appsSection" class="apps-section">
-      <div class="section-head"><div class="header-left"><span class="kicker">05 / APP LIBRARY · ANDROID</span><h2>PREMIUM<br><span class="accent">ANDROID APPS.</span></h2><p class="header-desc">Handpicked premium Android apps — unlocked, ad-free, no watermark.</p></div><div class="header-right"><div class="header-stat"><b id="statTotalApps">0</b><span>APPS</span></div><div class="header-stat"><b id="statDownloads">0</b><span>DOWNLOADS</span></div><div class="header-stat"><b id="statRating">0.0</b><span>RATING</span></div></div></div>
-      <div class="toolbar-row">
-        <form class="premium-searchbar" id="appSearchForm" role="search" onsubmit="return false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="appSearch" type="search" placeholder="Search apps…" autocomplete="off"><button class="search-btn" type="button" id="appSearchBtn">SEARCH</button></form>
-        <div class="sort-wrap"><select class="sort-select" id="appSortSelect"><option value="az">A → Z</option><option value="za">Z → A</option><option value="new">NEWEST</option><option value="downloads">MOST DOWNLOADED</option></select></div>
-        <span class="live-status" id="appsFirebaseStatus"><i></i> CONNECTING…</span>
-      </div>
-      <div id="appsGrid" class="apps-grid"></div>
-      <div id="appsEmpty" class="empty" hidden>NO APPS FOUND.</div>
-    </section>
-    <section id="sourceSection" class="source-section">
-      <div class="section-head"><div class="header-left"><span class="kicker">06 / SOURCE CODE LIBRARY</span><h2>COPY THE<br><span class="accent">CODE & BUILD.</span></h2><p class="header-desc">Ready-to-use source codes for HTML, CSS, JavaScript, React & Python.</p></div><div class="header-right"><div class="header-stat"><b id="statTotalSources">0</b><span>PROJECTS</span></div><div class="header-stat"><b id="statDownloads2">0</b><span>DOWNLOADS</span></div><div class="header-stat"><b id="statStars">0</b><span>STARS</span></div></div></div>
-      <div class="toolbar-row">
-        <form class="premium-searchbar" id="sourceSearchForm" role="search" onsubmit="return false"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="sourceSearch" type="search" placeholder="Search source codes…" autocomplete="off"><button class="search-btn" type="button" id="sourceSearchBtn">SEARCH</button></form>
-        <div class="sort-wrap"><select class="sort-select" id="sourceSortSelect"><option value="az">A → Z</option><option value="za">Z → A</option><option value="new">NEWEST</option><option value="downloads">MOST DOWNLOADED</option><option value="stars">TOP STARS</option></select></div>
-        <span class="live-status" id="sourceFirebaseStatus"><i></i> CONNECTING…</span>
-      </div>
-      <div class="platform-tabs" id="sourceLangTabs">
-        <button type="button" class="platform-tab active" data-lang="all">All</button>
-        <button type="button" class="platform-tab" data-lang="html">HTML</button>
-        <button type="button" class="platform-tab" data-lang="css">CSS</button>
-        <button type="button" class="platform-tab" data-lang="js">JS</button>
-        <button type="button" class="platform-tab" data-lang="react">React</button>
-        <button type="button" class="platform-tab" data-lang="python">Python</button>
-        <button type="button" class="platform-tab" data-lang="php">PHP</button>
-      </div>
-      <div id="sourceGrid" class="source-grid"></div>
-      <div id="sourceEmpty" class="empty" hidden>NO SOURCE CODES FOUND.</div>
     </section>
     <section id="about" class="about">
       <div class="about-mark">ZXH<i>OFFICIAL</i></div>
@@ -598,10 +568,10 @@ function injectHTML() {
 
 /* ============ STATE ============ */
 let db = null;
-let tools = [], apps = [], sources = [], notifications = [], settings = {};
+let tools = [], notifications = [], settings = {};
 let toolViews = {}, toolRatings = {};
-let active = "All", activeLang = "all";
-let searchDebounceTimer = null, appSearchDebounceTimer = null, sourceSearchDebounceTimer = null;
+let active = "All";
+let searchDebounceTimer = null;
 let deferredInstallPrompt = null;
 let bootInterval = null;
 let reviewTargetId = null, reviewRating = 0;
@@ -930,67 +900,6 @@ async function loadRatings() {
   } catch(e) { console.warn(e); }
 }
 
-function renderApps() {
-  const el = $("appsGrid"); if (!el) return;
-  const q = ($("appSearch")?.value || "").toLowerCase().trim();
-  let list = apps.filter(a => { if (q) { const h = (a?.name||"") + " " + (a?.description||"") + " " + (a?.developer||""); if (!h.toLowerCase().includes(q)) return false; } return true; });
-  list = sortList(list, $("appSortSelect")?.value || "az");
-  const empty = $("appsEmpty"); if (empty) empty.hidden = list.length > 0;
-  el.innerHTML = list.map(a => {
-    const name = a?.name || "UNTITLED";
-    const dev = a?.developer || "ZXH Official";
-    const desc = a?.description || "Premium Android app.";
-    const href = a?.downloadUrl || a?.link || "#";
-    const ver = String(a?.version || "1.0");
-    const dl = Number(a?.downloads || 0);
-    const rt = Number(a?.rating || 0);
-    const nf = isNew(a);
-    const prem = a?.premium === true || a?.badge === "premium";
-    const raw = String(a?.icon || "✦");
-    const rawHero = String(a?.banner || a?.hero || raw);
-    const isHero = isImg(rawHero);
-    const isIcon = isImg(raw);
-    const heroIn = isHero ? '<img src="'+esc(rawHero)+'" alt="'+esc(name)+'" loading="lazy">' : '<span class="app-symbol">'+esc(name.slice(0,2).toUpperCase())+'</span>';
-    const iconIn = isIcon ? '<img src="'+esc(raw)+'" alt="">' : esc(name.slice(0,2).toUpperCase());
-    return '<article class="app-card" data-name="'+esc(name)+'"><div class="app-hero '+(isHero?"":"no-img")+'">'+heroIn+'<span class="lang-badge android">ANDROID</span>'+(nf?'<span class="badge-new" style="left:auto;right:8px">NEW</span>':(prem?'<span class="premium-badge">PREMIUM</span>':""))+'<div class="app-icon-wrap">'+iconIn+'</div></div><div class="app-body"><h3 class="app-name">'+esc(name)+'</h3><p class="app-dev">'+esc(dev)+'</p><p class="app-desc">'+esc(desc)+'</p><div class="app-meta"><span class="app-meta-item">v'+esc(ver)+'</span><span class="app-meta-item">⬇ '+fmt(dl)+'</span><span class="app-meta-item"><span class="star">★</span> '+(rt?rt.toFixed(1):"NEW")+'</span></div><div class="app-actions"><button type="button" class="copy-app-btn" data-copy="'+esc(href)+'" data-copy-label="'+esc(name)+'">COPY</button><a class="download-btn" href="'+esc(href)+'" target="_blank" rel="noopener noreferrer">DOWNLOAD ↗</a></div></div></article>';
-  }).join("");
-  el.querySelectorAll(".copy-app-btn").forEach(b => { b.onclick = e => { e.stopPropagation(); copy(b.dataset.copy, b.dataset.copyLabel); }; });
-  const s1 = $("statTotalApps"); if (s1) s1.textContent = apps.length;
-  const s2 = $("statDownloads"); if (s2) s2.textContent = fmt(apps.reduce((s,a)=>s+Number(a?.downloads||0),0));
-  const r = apps.filter(a => Number(a?.rating)>0);
-  const s3 = $("statRating"); if (s3) s3.textContent = r.length ? (r.reduce((s,a)=>s+Number(a.rating),0)/r.length).toFixed(1) : "0.0";
-}
-function renderSources() {
-  const el = $("sourceGrid"); if (!el) return;
-  const q = ($("sourceSearch")?.value || "").toLowerCase().trim();
-  let list = sources.filter(s => {
-    if (activeLang !== "all" && String(s?.language||"").toLowerCase() !== activeLang) return false;
-    if (q) { const h = (s?.name||"") + " " + (s?.description||"") + " " + (s?.language||""); if (!h.toLowerCase().includes(q)) return false; }
-    return true;
-  });
-  list = sortList(list, $("sourceSortSelect")?.value || "az");
-  const empty = $("sourceEmpty"); if (empty) empty.hidden = list.length > 0;
-  el.innerHTML = list.map(s => {
-    const name = s?.name || "UNTITLED";
-    const lang = String(s?.language || "html").toLowerCase();
-    const desc = s?.description || "Source code project.";
-    const href = s?.downloadUrl || s?.link || "#";
-    const ver = String(s?.version || "1.0");
-    const stars = Number(s?.stars || 0);
-    const dl = Number(s?.downloads || 0);
-    const nf = isNew(s);
-    const raw = String(s?.icon || "");
-    const isIcon = isImg(raw);
-    const heroIn = isIcon ? '<img src="'+esc(raw)+'" alt="'+esc(name)+'" loading="lazy">' : '<span class="source-symbol">&lt;/&gt;</span>';
-    const langCls = ["html","css","js","react","python","php","node","vue"].includes(lang) ? lang : "html";
-    return '<article class="source-card" data-name="'+esc(name)+'"><div class="source-hero '+(isIcon?"":"no-img")+'">'+heroIn+'<span class="lang-badge '+langCls+'">'+esc(lang.toUpperCase())+'</span>'+(nf?'<span class="badge-new" style="left:auto;right:8px">NEW</span>':"")+'<span class="thumb-cat">'+esc(s?.category || lang.toUpperCase())+'</span></div><div class="source-body"><h3 class="source-name">'+esc(name)+'</h3><p class="source-dev">'+esc(s?.author || "ZXH Official")+' · v'+esc(ver)+'</p><p class="source-desc">'+esc(desc)+'</p><div class="source-meta"><span class="source-meta-item"><span class="star">★</span> '+(stars||"NEW")+'</span><span class="source-meta-item">⬇ '+fmt(dl)+'</span></div><div class="source-actions"><button type="button" class="copy-source-btn" data-copy="'+esc(href)+'" data-copy-label="'+esc(name)+'">COPY</button><a class="download-btn" href="'+esc(href)+'" target="_blank" rel="noopener noreferrer">DOWNLOAD ↗</a></div></div></article>';
-  }).join("");
-  el.querySelectorAll(".copy-source-btn").forEach(b => { b.onclick = e => { e.stopPropagation(); copy(b.dataset.copy, b.dataset.copyLabel); }; });
-  const total = $("statTotalSources"); if (total) total.textContent = sources.length;
-  const s2 = $("statDownloads2"); if (s2) s2.textContent = fmt(sources.reduce((s,x)=>s+Number(x?.downloads||0),0));
-  const st = $("statStars"); if (st) st.textContent = fmt(sources.reduce((s,x)=>s+Number(x?.stars||0),0));
-}
-
 /* ============ ACTIONS ============ */
 function toggleFav(name, btn) {
   if (isFav(name)) { favorites = favorites.filter(f => f !== name); if (btn) btn.classList.remove("active"); toast("Removed"); }
@@ -1041,10 +950,8 @@ function openItem(t) {
 async function loadAllData() {
   try {
     if (!db) await initFirebase();
-    const [tSnap, aSnap, sSnap, setSnap, nSnap, vSnap, rSnap, viewsSnap] = await Promise.all([
+    const [tSnap, setSnap, nSnap, vSnap, rSnap, viewsSnap] = await Promise.all([
       db.ref("/tools").once("value").catch(() => null),
-      db.ref("/apps").once("value").catch(() => null),
-      db.ref("/sources").once("value").catch(() => null),
       db.ref("/settings").once("value").catch(() => null),
       db.ref("/notifications").once("value").catch(() => null),
       db.ref("/stats/toolViews").once("value").catch(() => null),
@@ -1052,8 +959,6 @@ async function loadAllData() {
       db.ref("/stats/views").once("value").catch(() => null)
     ]);
     tools = arr(tSnap?.val());
-    apps = arr(aSnap?.val());
-    sources = arr(sSnap?.val());
     settings = setSnap?.val() || {};
     notifications = arr(nSnap?.val()).sort((a,b) => (b.createdAt||0) - (a.createdAt||0));
     toolViews = vSnap?.val() || {};
@@ -1074,14 +979,10 @@ async function loadAllData() {
       if ($(id) && settings[k]) $(id).href = settings[k];
     });
     const f = $("firebaseStatus"); if (f) { f.classList.remove("err"); f.classList.add("ok"); f.innerHTML = '<i></i> ' + tools.length + ' TOOLS'; }
-    const fa = $("appsFirebaseStatus"); if (fa) { fa.classList.remove("err"); fa.classList.add("ok"); fa.innerHTML = '<i></i> ' + apps.length + ' APPS'; }
-    const fs = $("sourceFirebaseStatus"); if (fs) { fs.classList.remove("err"); fs.classList.add("ok"); fs.innerHTML = '<i></i> ' + sources.length + ' SOURCES'; }
     const ds = $("dbStatus"); if (ds) ds.textContent = "LIVE";
-    renderCategories(); renderTools(); renderApps(); renderSources(); renderTrendingRows();
+    renderCategories(); renderTools(); renderTrendingRows();
     updateNotifsUI();
     db.ref("/tools").on("value", s => { tools = arr(s.val()); renderCategories(); renderTools(); renderTrendingRows(); });
-    db.ref("/apps").on("value", s => { apps = arr(s.val()); renderApps(); });
-    db.ref("/sources").on("value", s => { sources = arr(s.val()); renderSources(); });
     db.ref("/stats/toolViews").on("value", s => { toolViews = s.val() || {}; renderTools(); renderTrendingRows(); });
     db.ref("/stats/views").on("value", s => { const v = $("views"); if (v) v.textContent = Number(s.val() || 0).toLocaleString(); });
     db.ref("/reviews").on("value", s => {
@@ -1221,22 +1122,6 @@ function setupUI() {
   $("searchBtn")?.addEventListener("click", renderTools);
   $("searchForm")?.addEventListener("submit", e => { e.preventDefault(); renderTools(); });
   $("sortSelect")?.addEventListener("change", renderTools);
-  $("appSearch")?.addEventListener("input", () => { clearTimeout(appSearchDebounceTimer); appSearchDebounceTimer = setTimeout(renderApps, 300); });
-  $("appSearchBtn")?.addEventListener("click", renderApps);
-  $("appSearchForm")?.addEventListener("submit", e => { e.preventDefault(); renderApps(); });
-  $("appSortSelect")?.addEventListener("change", renderApps);
-  $("sourceSearch")?.addEventListener("input", () => { clearTimeout(sourceSearchDebounceTimer); sourceSearchDebounceTimer = setTimeout(renderSources, 300); });
-  $("sourceSearchBtn")?.addEventListener("click", renderSources);
-  $("sourceSearchForm")?.addEventListener("submit", e => { e.preventDefault(); renderSources(); });
-  $("sourceSortSelect")?.addEventListener("change", renderSources);
-  document.querySelectorAll("#sourceLangTabs .platform-tab").forEach(tab => {
-    tab.onclick = () => {
-      document.querySelectorAll("#sourceLangTabs .platform-tab").forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
-      activeLang = tab.dataset.lang || "all";
-      renderSources();
-    };
-  });
   $("favChipBtn")?.addEventListener("click", () => { active = active === "__favorites__" ? "All" : "__favorites__"; renderCategories(); renderTools(); });
   $("menu")?.addEventListener("click", () => { $("drawer").classList.add("open"); $("shade").classList.add("on"); });
   const close = () => { $("drawer").classList.remove("open"); $("shade").classList.remove("on"); };
@@ -1272,8 +1157,6 @@ function runBootProgress() {
     { at: 15, label: "INITIALIZING" },
     { at: 35, label: "CONNECTING FIREBASE" },
     { at: 55, label: "LOADING TOOLS" },
-    { at: 75, label: "LOADING APPS" },
-    { at: 90, label: "LOADING SOURCE CODE" },
     { at: 100, label: "READY" }
   ];
   let progress = 0, stepIdx = 0;
@@ -1290,11 +1173,7 @@ function runBootProgress() {
     }
   }, 60);
 }
-function registerServiceWorker() {
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
-  }
-}
+function registerServiceWorker() {}
 async function boot() {
   injectStyles();
   injectHTML();
@@ -1302,8 +1181,6 @@ async function boot() {
   runBootProgress();
   registerServiceWorker();
   renderSkeleton("toolsGrid", 6, "skeleton-card");
-  renderSkeleton("appsGrid", 4, "app-skeleton");
-  renderSkeleton("sourceGrid", 4, "source-skeleton");
   setTimeout(async () => {
     await loadAllData();
     await initAnalytics();
@@ -1312,7 +1189,10 @@ async function boot() {
     if (toolId) { const t = tools.find(x => x.id === toolId); if (t) openItem(t); }
   }, 800);
 }
-if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
-else boot();
+window.__zxhLegacyBoot = boot;
 
 })();
+
+export function mountLegacyApp() {
+  (window as any).__zxhLegacyBoot();
+}
