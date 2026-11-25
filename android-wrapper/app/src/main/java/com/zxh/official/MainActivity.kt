@@ -19,7 +19,7 @@ class MainActivity : Activity() {
     private lateinit var webView: WebView
     private var uploadCallback: ValueCallback<Array<Uri>>? = null
     private val fileRequestCode = 4107
-    private val startUrl = "https://zxh-official-tools.pages.dev/"
+    private val startUrl = "https://zxh-official-tools-hub.vercel.app/?nativeApp=1"
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
