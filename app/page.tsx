@@ -79,6 +79,40 @@ export default function HomePage() {
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [feedbackStatus, setFeedbackStatus] = useState("");
   const [bootVisible, setBootVisible] = useState(true);
+  const [installPrompt, setInstallPrompt] = useState<any>(null);
+  const [installVisible, setInstallVisible] = useState(false);
+
+  useEffect(() => {
+    const handleInstallPrompt = (event: Event) => {
+      event.preventDefault();
+      setInstallPrompt(event);
+      if (!localStorage.getItem("zxh_install_dismissed")) setInstallVisible(true);
+    };
+    const handleInstalled = () => {
+      setInstallVisible(false);
+      setInstallPrompt(null);
+      localStorage.setItem("zxh_installed", "1");
+    };
+    window.addEventListener("beforeinstallprompt", handleInstallPrompt);
+    window.addEventListener("appinstalled", handleInstalled);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", handleInstallPrompt);
+      window.removeEventListener("appinstalled", handleInstalled);
+    };
+  }, []);
+
+  const installApp = async () => {
+    if (!installPrompt) return;
+    await installPrompt.prompt();
+    await installPrompt.userChoice;
+    setInstallPrompt(null);
+    setInstallVisible(false);
+  };
+
+  const dismissInstall = () => {
+    setInstallVisible(false);
+    localStorage.setItem("zxh_install_dismissed", "1");
+  };
 
   useEffect(() => {
     try {
@@ -216,6 +250,7 @@ export default function HomePage() {
     {bootVisible && <div className="boot"><div className="boot-logo-wrap"><div className="boot-logo">ZXH</div><div className="boot-official">OFFICIAL</div></div><div className="boot-divider"/><strong className="boot-welcome">Welcome to <span className="accent">ZXH OFFICIAL TOOLS</span> 🚀</strong><p className="boot-subtitle">Your premium digital workspace — tools and utilities in one place.</p><div className="boot-track"><i style={{width:"100%"}}/></div><span className="boot-percent">100%</span><span className="boot-status">READY</span></div>}
     <div className="soft-bg"/>
     <div className="site">
+      {installVisible && installPrompt && <div className="install-overlay"><div className="install-card"><button type="button" className="install-close" aria-label="Close install prompt" onClick={dismissInstall}>×</button><div className="install-icon">ZXH</div><h2>INSTALL ZXH OFFICIAL</h2><p>Install ZXH OFFICIAL TOOLS on your device for a faster app-like experience.</p><button type="button" className="install-main" onClick={() => void installApp()}>INSTALL NOW ↗</button><button type="button" className="install-later" onClick={dismissInstall}>MAYBE LATER</button></div></div>}
       <header className="nav"><a className="brand" href="#home"><span className="brand-mark">Z</span><span><b>{settings.site_title || "ZXH OFFICIAL TOOLS"}</b><small>DIGITAL TOOL SYSTEM</small></span></a><nav><a href="#home">HOME</a><a href="#trendingSection">TRENDING</a><a href="#library">TOOLS</a></nav><div className="nav-actions"><button className="round notification-btn" aria-label="Notifications" onClick={() => setNotificationsOpen(true)}>♧</button><button className="round" aria-label="Toggle theme" onClick={() => setTheme(value => value === "dark" ? "light" : "dark")}>{theme === "dark" ? "☾" : "☼"}</button><button className="round" aria-label="Menu" onClick={() => setDrawerOpen(true)}>☰</button></div></header>
       <aside className={`drawer ${drawerOpen ? "open" : ""}`}><button className="drawer-x" onClick={() => setDrawerOpen(false)}>×</button><span className="kicker">ZXH / MENU</span><h2><span className="line1">ZULQARNAIN</span><span className="line2">X HAIDER</span></h2>{[["🏠","HOME","#home"],["🔥","TRENDING","#trendingSection"],["🛠️","TOOLS","#library"],["👤","ABOUT","#about"]].map(([icon,label,href]) => <a key={label} href={href} className="drawer-nav-link" onClick={() => setDrawerOpen(false)}><span className="dnav-icon">{icon}</span><span className="dnav-text">{label}</span></a>)}<div className="drawer-links"><a href={settings.owner_contact_link || "#"} target="_blank" rel="noreferrer">OWNER CONTACT ↗</a><a href={settings.whatsapp_channel_link || "#"} target="_blank" rel="noreferrer">WHATSAPP CHANNEL ↗</a><a href={settings.whatsapp_group_link || "#"} target="_blank" rel="noreferrer">COMMUNITY ↗</a></div></aside>
       {drawerOpen && <button className="shade on" aria-label="Close menu" onClick={() => setDrawerOpen(false)}/>}
